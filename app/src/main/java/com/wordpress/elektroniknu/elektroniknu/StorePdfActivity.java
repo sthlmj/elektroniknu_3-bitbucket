@@ -25,7 +25,7 @@ public class StorePdfActivity extends ActionBarActivity {
 
         if(position >= 0){
             try {
-                URL = TextFileHandler.getURL(position);
+                URL = TextFileHandler.getURL(position, getResources());
             } catch (IOException e) {
                 ;
             }
