@@ -39,16 +39,17 @@ public class MainActivity extends ActionBarActivity {
         theListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                //String electronicSupplier = "You selected" +
-                //      String.valueOf(adapterView.getItemAtPosition(i));
+                String electronicSupplier = "You selected" +
+                      String.valueOf(adapterView.getItemAtPosition(i));
 
-                //      Toast.makeText(MainActivity.this, electronicSupplier,
-                //      Toast.LENGTH_SHORT).show();
+                      Toast.makeText(MainActivity.this, electronicSupplier,
+                      Toast.LENGTH_SHORT).show();
 
-                int val = i + 1;
+                /*int val = i + 1;
                 Intent intent = new Intent(MainActivity.this, StorePdfActivity.class);
                 intent.putExtra("key", val);
                 MainActivity.this.startActivity(intent);
+                */
 
             }
         });
