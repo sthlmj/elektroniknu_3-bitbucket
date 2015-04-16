@@ -22,7 +22,7 @@ public class MainActivity extends ActionBarActivity {
 
         // Data that I want too put in my ListView
         // Array of Strings
-        String[] electronicSupplier = {"Siba", "Elgiganten", "MediamMarkt", "NetOnNet"};
+        String[] electronicSupplier = {"Siba", "Elgiganten", "MediaMarkt", "NetOnNet"};
 
         // ListAdapter too be able to adapt our array in too
         // something that our listview is able to work with
