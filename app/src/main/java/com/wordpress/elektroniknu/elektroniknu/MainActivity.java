@@ -26,10 +26,10 @@ public class MainActivity extends ActionBarActivity {
         // Array of Strings
         String[] electronicSupplier;
         try {
-            int lines = TextFileHandler.getLines();
+            int lines = TextFileHandler.getLines(getResources());
             electronicSupplier = new String[lines];
             for(int i=0; i<lines; i++){
-                electronicSupplier[i] = TextFileHandler.getStoreName(i+1);
+                electronicSupplier[i] = TextFileHandler.getStoreName(i+1, getResources());
 
             }
 
