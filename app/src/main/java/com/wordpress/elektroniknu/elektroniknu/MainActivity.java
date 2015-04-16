@@ -12,6 +12,8 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import java.io.IOException;
+
 
 public class MainActivity extends ActionBarActivity {
 
@@ -22,12 +24,21 @@ public class MainActivity extends ActionBarActivity {
 
         // Data that I want too put in my ListView
         // Array of Strings
-        String[] electronicSupplier = {"Siba", "Elgiganten", "MediamMarkt", "NetOnNet"};
+        String[] electronicSupplier;
+        try {
+            int lines = TextFileHandler.getLines();
+            electronicSupplier = new String[lines];
+            for(int i=0; i<lines; i++){
+                electronicSupplier[i] = TextFileHandler.getStoreName(i+1);
+
+            }
+
+        } catch (IOException e) {
+            electronicSupplier = new String[]{"adw", "@da"};
+        }
 
         // ListAdapter too be able to adapt our array in too
         // something that our listview is able to work with
-
-
         ListAdapter theAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_expandable_list_item_1,
                 electronicSupplier);
 
