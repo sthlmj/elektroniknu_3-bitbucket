@@ -19,40 +19,16 @@ public class StorePdfActivity extends ActionBarActivity {
         setContentView(R.layout.activity_store_pdf);
 
         Intent intent = getIntent();
-        position = intent.getIntExtra("Number", -1);
+        position = intent.getIntExtra("Key", -1);
 
         if(position >= 0){
             try {
-                String URL = ReadStore(position);
+                String URL = ;
             } catch (IOException e) {
                 ;
             }
         }
 
-    }
-
-    private String ReadStore(int position) throws IOException{
-        FileReader fr = new FileReader("StoresPdf.txt");
-        BufferedReader textReader = new BufferedReader(fr);
-
-        int numberOfLines = readLines();
-
-        for(int i = 0; i)
-    }
-
-    int readLines() throws IOException{
-        FileReader fr = new FileReader("StoresPdf.txt");
-        BufferedReader bf = new BufferedReader(fr);
-
-        String aLine;
-        int numberOfLines = 0;
-
-        while((aLine = bf.readLine()) != null){
-            numberOfLines++;
-        }
-        bf.close();
-
-        return numberOfLines;
     }
 
 
