@@ -19,7 +19,7 @@ public class StorePdfActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
 
         Intent intent = getIntent();
-        position = intent.getIntExtra("Key", -1);
+        position = intent.getIntExtra("key", -1);
         
         String URL = "";
 
