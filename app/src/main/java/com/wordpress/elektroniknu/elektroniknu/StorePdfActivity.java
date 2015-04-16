@@ -5,14 +5,15 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.webkit.WebView;
 import java.io.IOException;
-import java.io.FileReader;
-import java.io.BufferedReader;
 
 
 public class StorePdfActivity extends ActionBarActivity {
 
     int position;
+    WebView webview;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -20,15 +21,19 @@ public class StorePdfActivity extends ActionBarActivity {
 
         Intent intent = getIntent();
         position = intent.getIntExtra("Key", -1);
+        
+        String URL = "";
 
         if(position >= 0){
             try {
-                String URL = ;
+                URL = TextFileHandler.getURL(position);
             } catch (IOException e) {
                 ;
             }
         }
 
+        webview = (WebView) findViewById(R.id.Pdf);
+        webview.loadUrl(URL);
     }
 
 
