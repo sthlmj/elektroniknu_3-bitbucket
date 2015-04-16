@@ -1,12 +1,16 @@
 package com.wordpress.elektroniknu.elektroniknu;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -32,13 +36,25 @@ public class MainActivity extends ActionBarActivity {
 
         theListView.setAdapter(theAdapter);
 
-        //theListView.setOnItemClickListener(new
-        //AdapterView,onItemClickListner());
+        theListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                //String electronicSupplier = "You selected" +
+                //      String.valueOf(adapterView.getItemAtPosition(i));
 
+                //      Toast.makeText(MainActivity.this, electronicSupplier,
+                //      Toast.LENGTH_SHORT).show();
 
+                int val = i + 1;
+                Intent intent = new Intent(MainActivity.this, StorePdfActivity.class);
+                intent.putExtra("key", val);
+                MainActivity.this.startActivity(intent);
 
-
+            }
+        });
     }
+
+
 
 
     @Override
