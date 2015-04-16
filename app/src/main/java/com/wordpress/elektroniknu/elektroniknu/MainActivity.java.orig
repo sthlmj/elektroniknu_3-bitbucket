@@ -24,12 +24,16 @@ public class MainActivity extends ActionBarActivity {
 
         // Data that I want too put in my ListView
         // Array of Strings
+<<<<<<< HEAD
         String[] electronicSupplier;
         try {
             int lines = TextFileHandler.getLines();
             electronicSupplier = new String[lines];
             for(int i=0; i<lines; i++){
                 electronicSupplier[i] = TextFileHandler.getStoreName(i+1);
+=======
+        String[] electronicSupplier = {"Siba", "Elgiganten", "MediaMarkt", "NetOnNet"};
+>>>>>>> master
 
             }
 
