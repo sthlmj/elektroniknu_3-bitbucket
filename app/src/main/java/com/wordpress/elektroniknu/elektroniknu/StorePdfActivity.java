@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.webkit.WebView;
+import android.widget.Toast;
+
 import java.io.IOException;
 
 
@@ -21,19 +23,20 @@ public class StorePdfActivity extends ActionBarActivity {
         Intent intent = getIntent();
         position = intent.getIntExtra("key", -1);
         
-        String URL = "";
+        String URL;
 
         if(position >= 0){
             try {
                 URL = TextFileHandler.getURL(position, getResources());
+                webview = new WebView(this);
+                setContentView(webview);
+                webview.loadUrl(URL);
             } catch (IOException e) {
-                ;
+                Toast.makeText(this, "Something was Wrong!", Toast.LENGTH_LONG).show();
+                intent = new Intent(this, MainActivity.class);
+                startActivity(intent);
             }
         }
-
-        webview = new WebView(this);
-        setContentView(webview);
-        webview.loadUrl(URL);
     }
 
 
