@@ -17,7 +17,6 @@ public class StorePdfActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_store_pdf);
 
         Intent intent = getIntent();
         position = intent.getIntExtra("Key", -1);
@@ -32,7 +31,8 @@ public class StorePdfActivity extends ActionBarActivity {
             }
         }
 
-        webview = (WebView) findViewById(R.id.Pdf);
+        webview = new WebView(this);
+        setContentView(webview);
         webview.loadUrl(URL);
     }
 
