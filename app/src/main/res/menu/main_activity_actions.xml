@@ -2,7 +2,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:yourapp="http://schemas.android.com/apk/res-auto">
 
-    <item android:id="@+id/action_about"
+    <item android:id="@+id/action_update"
         android:icon="@drawable/ic_action_about"
         android:title="@string/action_about"
         android:orderInCategory="1"
@@ -13,18 +13,16 @@
         android:title="@string/action_refresh"
         yourapp:showAsAction="ifRoom" /> -->
 
-    <item android:id="@+id/action_map"
-        android:icon="@drawable/ic_action_map"
-        android:title="@string/action_map"
+    <item android:id="@+id/action_city"
+        android:title="Byt stad"
         yourapp:showAsAction="collapseActionView" />
 
-    <item android:id="@+id/action_search"
-        android:icon="@drawable/ic_action_search"
-        android:title="@string/action_search"
+    <item android:id="@+id/action_about"
+        android:title="Om oss"
         yourapp:showAsAction="collapseActionView" />
 
     <item android:id="@+id/action_settings"
-        android:title="@string/action_settings"
+        android:title="Inställningar"
         yourapp:showAsAction="collapseActionView" />
 
 
