@@ -21,6 +21,10 @@ import java.io.IOException;
 
 public class MainActivity extends ActionBarActivity {
 
+    /**
+     * Implementation of ListView
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,8 +53,8 @@ public class MainActivity extends ActionBarActivity {
 
         ListView theListView = (ListView) findViewById(R.id.theListView);
 
-        theListView.setAdapter(theAdapter);
 
+        theListView.setAdapter(theAdapter);
         theListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -70,8 +74,11 @@ public class MainActivity extends ActionBarActivity {
     }
 
 
-
-
+    /**
+     * ????????? vad gör den här ????
+     * @param menu
+     * @return
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -80,6 +87,11 @@ public class MainActivity extends ActionBarActivity {
         return super.onCreateOptionsMenu(menu);
     }
 
+    /**
+     * Main activity bar switch.
+     * @param item
+     * @return
+     */
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
@@ -108,8 +120,17 @@ public class MainActivity extends ActionBarActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
+
+    /**
+     * Main activity bar list actions.
+     */
+
+    //open city
     private void openCity() {
     }
+
+    //open About
     private void openAbout() {
         new AlertDialog.Builder(this)
         .setTitle("Om oss")
@@ -121,6 +142,8 @@ public class MainActivity extends ActionBarActivity {
             }
         }).show();
     }
+
+    //open settings
     private void openSettings() {
     }
 }
