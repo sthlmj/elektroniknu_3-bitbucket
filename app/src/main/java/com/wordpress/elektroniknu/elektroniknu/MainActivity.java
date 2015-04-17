@@ -94,10 +94,16 @@ public class MainActivity extends ActionBarActivity {
                 toast.setGravity(Gravity.TOP|Gravity.RIGHT, 5, 10);
                 toast.show();
                 return true;
+            case R.id.action_settings:
+                openSettings();
+                return true;
 
 
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void openSettings() {
     }
 
 }
