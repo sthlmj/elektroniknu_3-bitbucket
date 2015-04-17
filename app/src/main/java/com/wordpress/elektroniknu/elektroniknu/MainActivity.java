@@ -92,7 +92,7 @@ public class MainActivity extends ActionBarActivity {
         //}
         switch (item.getItemId()) {
             case R.id.action_update:
-                Toast toast = Toast.makeText(getBaseContext(), "Senast uppdaterad: /n Aldrig!", Toast.LENGTH_LONG);
+                Toast toast = Toast.makeText(getBaseContext(), "Version: 0.2-alpha", Toast.LENGTH_LONG);
                 toast.setGravity(Gravity.TOP|Gravity.RIGHT, 5, 10);
                 toast.show();
                 return true;
