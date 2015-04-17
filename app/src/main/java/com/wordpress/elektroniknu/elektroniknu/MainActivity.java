@@ -1,5 +1,7 @@
 package com.wordpress.elektroniknu.elektroniknu;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -89,21 +91,36 @@ public class MainActivity extends ActionBarActivity {
         //  return true;
         //}
         switch (item.getItemId()) {
-            case R.id.action_about:
-                Toast toast = Toast.makeText(getBaseContext(), "Om oss: \n The best team in the world!", Toast.LENGTH_LONG);
+            case R.id.action_update:
+                Toast toast = Toast.makeText(getBaseContext(), "Senast uppdaterad: /n Aldrig!", Toast.LENGTH_LONG);
                 toast.setGravity(Gravity.TOP|Gravity.RIGHT, 5, 10);
                 toast.show();
+                return true;
+            case R.id.action_city:
+                openCity();
+                return true;
+            case R.id.action_about:
+                openAbout();
                 return true;
             case R.id.action_settings:
                 openSettings();
                 return true;
-
-
         }
         return super.onOptionsItemSelected(item);
     }
+    private void openCity() {
+    }
+    private void openAbout() {
+        new AlertDialog.Builder(this)
+        .setTitle("Om oss")
+        .setMessage("elektroniknu.wordpress.com")
+        .setNeutralButton("OK", new DialogInterface.OnClickListener() {
 
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+        }).show();
+    }
     private void openSettings() {
     }
-
 }
