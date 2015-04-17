@@ -1,10 +1,14 @@
 package com.wordpress.elektroniknu.elektroniknu;
 
 import android.content.Intent;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.widget.ShareActionProvider;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.Toast;
 
 import java.io.IOException;
@@ -14,6 +18,7 @@ public class StorePdfActivity extends ActionBarActivity {
 
     int position; // Position of item that user clicked
     WebView webview; // WebView that open the URI
+    ShareActionProvider mShareActionProvider;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +34,7 @@ public class StorePdfActivity extends ActionBarActivity {
             try { // try and catch IOException
                 URL = TextFileHandler.getURL(position, getResources()); // Get URI of position line in StorePdf.txt
                 webview = (WebView) findViewById(R.id.Pdf); // Find webview by id
+                webview.setWebViewClient(new myWebViewClient());
                 webview.getSettings().setJavaScriptEnabled(true); // Set Java Script enable to true
                 webview.loadUrl(URL); // Load URL
             } catch (IOException e) { // If we catch IOException
@@ -39,26 +45,35 @@ public class StorePdfActivity extends ActionBarActivity {
         }
     }
 
-
+    public class myWebViewClient extends WebViewClient { // WebViewClient to override URL loading
+        public boolean shouldOverrideUrlLoading(WebView view, String url){ // Override URL method
+            view.loadUrl(url); // Load that url to view
+            return true; // Tell system we handle it
+        }
+    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_store_pdf, menu);
+
+        MenuItem shareItem = menu.findItem(R.id.menu_item_share);
+
+        if(shareItem != null){
+            mShareActionProvider = (ShareActionProvider) MenuItemCompat.getActionProvider(shareItem);
+        }
+
+        setShareIntent();
+
         return true;
     }
 
-  /*  @Override
-   /* public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
+    private void setShareIntent(){
+        if(mShareActionProvider != null){
+            Intent shareIntent = new Intent(Intent.ACTION_SEND);
+            shareIntent.setType("text/plain");
+            shareIntent.putExtra(Intent.EXTRA_TEXT, webview.getUrl());
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+            mShareActionProvider.setShareIntent(shareIntent);
         }
-
-        return super.onOptionsItemSelected(item);
-    }*/
+    }
 }
