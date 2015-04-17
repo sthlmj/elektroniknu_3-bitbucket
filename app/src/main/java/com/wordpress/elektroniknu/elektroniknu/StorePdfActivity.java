@@ -13,28 +13,28 @@ import java.io.IOException;
 
 public class StorePdfActivity extends ActionBarActivity {
 
-    int position;
-    WebView webview;
+    int position; // Position of item that user clicked
+    WebView webview; // WebView that open the URI
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        Intent intent = getIntent();
-        position = intent.getIntExtra("key", -1);
+        Intent intent = getIntent(); // Get Intent from MainActivity
+        position = intent.getIntExtra("key", -1); // Get position from that intent and give it default value -1
         
-        String URL;
+        String URL; // String URL that save the URI
 
-        if(position >= 0){
-            try {
-                URL = TextFileHandler.getURL(position, getResources());
-                webview = new WebView(this);
-                setContentView(webview);
-                webview.loadUrl(URL);
-            } catch (IOException e) {
-                Toast.makeText(this, "Something was Wrong!", Toast.LENGTH_LONG).show();
-                intent = new Intent(this, MainActivity.class);
-                startActivity(intent);
+        if(position >= 0){ // Check if position if bigger or equal to 0
+            try { // try and catch IOException
+                URL = TextFileHandler.getURL(position, getResources()); // Get URI of position line in StorePdf.txt
+                webview = new WebView(this); // New WebView
+                setContentView(webview); // Display WebView
+                webview.loadUrl(URL); // Load the URI
+            } catch (IOException e) { // If we catch IOException
+                Toast.makeText(this, "Something was Wrong!", Toast.LENGTH_LONG).show(); // Make a toast that display "Something was wrong!"
+                intent = new Intent(this, MainActivity.class); // A new intent to MainActivity
+                startActivity(intent); // Start that intent
             }
         }
     }
