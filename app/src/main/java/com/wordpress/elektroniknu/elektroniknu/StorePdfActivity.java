@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.v7.widget.ShareActionProvider;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Toast;
@@ -48,6 +49,7 @@ public class StorePdfActivity extends ActionBarActivity {
     public class myWebViewClient extends WebViewClient { // WebViewClient to override URL loading
         public boolean shouldOverrideUrlLoading(WebView view, String url){ // Override URL method
             view.loadUrl(url); // Load that url to view
+            setShareIntent();
             return true; // Tell system we handle it
         }
     }
