@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
-import android.view.MenuItem;
 import android.webkit.WebView;
 import android.widget.Toast;
 
@@ -19,6 +18,7 @@ public class StorePdfActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_store_pdf); // Display the activity_store_pdf xml
 
         Intent intent = getIntent(); // Get Intent from MainActivity
         position = intent.getIntExtra("key", -1); // Get position from that intent and give it default value -1
@@ -28,9 +28,9 @@ public class StorePdfActivity extends ActionBarActivity {
         if(position >= 0){ // Check if position if bigger or equal to 0
             try { // try and catch IOException
                 URL = TextFileHandler.getURL(position, getResources()); // Get URI of position line in StorePdf.txt
-                webview = new WebView(this); // New WebView
-                setContentView(webview); // Display WebView
-                webview.loadUrl(URL); // Load the URI
+                webview = (WebView) findViewById(R.id.Pdf); // Find webview by id
+                webview.getSettings().setJavaScriptEnabled(true); // Set Java Script enable to true
+                webview.loadUrl(URL); // Load URL
             } catch (IOException e) { // If we catch IOException
                 Toast.makeText(this, "Something was Wrong!", Toast.LENGTH_LONG).show(); // Make a toast that display "Something was wrong!"
                 intent = new Intent(this, MainActivity.class); // A new intent to MainActivity
