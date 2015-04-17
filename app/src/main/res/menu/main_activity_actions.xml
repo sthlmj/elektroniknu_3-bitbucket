@@ -1,8 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:yourapp="http://schemas.android.com/apk/res-auto">
+
     <item android:id="@+id/action_about"
         android:icon="@drawable/ic_action_about"
         android:title="@string/action_about"
-        yourapp:showAsAction="ifRoom" />
+        android:orderInCategory="1"
+        yourapp:showAsAction="always" />
+
+   <!-- <item android:id="@+id/action_refresh"
+        android:icon="@drawable/ic_action_refresh"
+        android:title="@string/action_refresh"
+        yourapp:showAsAction="ifRoom" /> -->
+
+    <item android:id="@+id/action_map"
+        android:icon="@drawable/ic_action_map"
+        android:title="@string/action_map"
+        yourapp:showAsAction="collapseActionView" />
+
+    <item android:id="@+id/action_search"
+        android:icon="@drawable/ic_action_search"
+        android:title="@string/action_search"
+        yourapp:showAsAction="collapseActionView" />
+
+    <item android:id="@+id/action_settings"
+        android:title="@string/action_settings"
+        yourapp:showAsAction="collapseActionView" />
+
+
+
 </menu>
