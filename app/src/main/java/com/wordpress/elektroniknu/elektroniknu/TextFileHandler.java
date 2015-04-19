@@ -19,7 +19,8 @@ public class TextFileHandler {
         }
 
         storeAndUrl = textReader.readLine(); // Read that line we want
-        textReader.close(); // Close the file
+        textReader.close(); // Close the reader
+        is.close();//close the opened file
         return storeAndUrl; // Return the line
     }
 
