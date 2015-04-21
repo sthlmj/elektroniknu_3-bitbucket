@@ -1,22 +1,27 @@
 package com.wordpress.elektroniknu.elektroniknu;
 
-import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
-public class HtmlParser {
+
+public class HtmlParserElgigantenIn {
 
     public static void main(String[] args){
-       getProducts();
+
     }
 
     public static Product[] getProducts(){
         Document Doc = null;
         try{
+            String[] listofCategories = HtmlParserElgigantenOut.getCatergoryList();
+            for(int i = 0; i < HtmlParserElgigantenOut.getCatergoryList().length; i++){
+
+            }
             Doc = Jsoup.connect("http://www.siba.se/aktuella-kampanjer/veckans-erbjudande").get(); // HTML file from their website
         }catch(IOException ex){ // Catch exception
             Logger.getLogger(HtmlParser.class.getName()).log(Level.SEVERE, null, ex); // Print out at log
