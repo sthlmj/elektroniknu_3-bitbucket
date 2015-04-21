@@ -24,11 +24,18 @@ public class HtmlParser {
         if(Doc != null) {
             org.jsoup.select.Elements links = Doc.select("div.info h2 a");
             Product[] Products = new Product[links.size()];
+            for(int i = 0; i < links.size(); i++){
+                Products[i] = new Product();
+            }
             int i = 0;
             for(Element e: links){
                 Products[i].setUrl(e.attr("abs:href"));
+                Products[i].setProductName(e.ownText());
                 i++;
-                System.out.println(e.attr("abs:href"));
+            }
+            links = Doc.select("div.product-box-price");
+            i = 0;
+            for(Element e: links){
             }
             return Products;
         }else{

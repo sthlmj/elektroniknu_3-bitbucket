@@ -8,6 +8,7 @@ public class Product {
     private String url;
     private String productName;
     private String productPrice;
+    private String productImageUrl;
 
     public void setUrl(String url) {
         this.url = url;
@@ -24,8 +25,6 @@ public class Product {
     public void setProductImageUrl(String productImageUrl) {
         this.productImageUrl = productImageUrl;
     }
-
-    private String productImageUrl;
 
     public String getUrl() {
         return url;
