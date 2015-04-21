@@ -17,24 +17,17 @@ public class HtmlParser {
         System.out.println(myParser.getProducts());
     }
 
-    public HtmlParser() {
-        Doc = getHtml();
-    }
-
-    public Document getHtml(){
+    public static void getHtml(){
         try{
-            Document doc = Jsoup.connect("http://www.siba.se/aktuella-kampanjer/veckans-erbjudande").get(); // HTML file from their website
-            return doc;
+            Document Doc = Jsoup.connect("http://www.siba.se/aktuella-kampanjer/veckans-erbjudande").get(); // HTML file from their website
         }catch(IOException ex){ // Catch exception
             Logger.getLogger(HtmlParser.class.getName()).log(Level.SEVERE, null, ex); // Print out at log
         }
-        return null;
     }
 
-    public String getProducts(){
+    public Product getProducts(){
         if(Doc != null) {
-            org.jsoup.select.Elements links = Doc.select("div.info h2"); // Select tag from HTML text
-            return links.toString();
+            org.jsoup.select.Elements links = Doc.select("div.product-box-price");
         }else{
             return null;
         }
