@@ -10,15 +10,45 @@ import org.jsoup.nodes.Element;
 
 public class HtmlParser {
 
+    private Document Doc = null;
+
     public static void main(String[] args){
+        HtmlParser myParser = new HtmlParser();
+        myParser.getPrice();
+    }
+
+    public HtmlParser() {
+        Doc = getHtml();
+    }
+
+    public Document getHtml(){
         try{
-            Document doc = Jsoup.connect("http://www.siba.se/aktuella-kampanjer/veckans-erbjudande").get();
-            org.jsoup.select.Elements links = doc.select("img");
+            Document doc = Jsoup.connect("http://www.siba.se/aktuella-kampanjer/veckans-erbjudande").get(); // HTML file from their website
+            return doc;
+        }catch(IOException ex){ // Catch exception
+            Logger.getLogger(HtmlParser.class.getName()).log(Level.SEVERE, null, ex); // Print out at log
+        }
+        return null;
+    }
+
+    public String getProducts(){
+        if(Doc != null) {
+            org.jsoup.select.Elements links = Doc.select("div.info h2"); // Select tag from HTML text
+            return links.toString();
+        }else{
+            return null;
+        }
+    }
+
+    public String getPrice(){
+        if(Doc != null){
+            org.jsoup.select.Elements links = Doc.select("div.info"); // Select tag from HTML text
             for(Element e: links){
-                System.out.println(e.attr("abs:src"));
+                System.out.println(e.attr("div.product-boxprice"));
             }
-        }catch(IOException ex){
-            Logger.getLogger(HtmlParser.class.getName()).log(Level.SEVERE, null, ex);
+            return links.toString();
+        }else{
+            return null;
         }
     }
 }
