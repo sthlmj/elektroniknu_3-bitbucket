@@ -36,6 +36,8 @@ public class HtmlParser {
             links = Doc.select("div.product-box-price");
             i = 0;
             for(Element e: links){
+                Products[i].setProductPrice(e.ownText().replace(" ", ""));
+                System.out.println(e.ownText().replace(" ", ""));
             }
             return Products;
         }else{
