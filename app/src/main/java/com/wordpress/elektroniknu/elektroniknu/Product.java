@@ -1,14 +1,31 @@
 package com.wordpress.elektroniknu.elektroniknu;
 
 /**
- * Created by joehulden on 21/04/15.
+ * Skapar objekt med dom variabler
  */
 public class Product {
 
-    private final String url;
-    private final String productName;
-    private final String productPrice;
-    private final String productImageUrl;
+    private String url;
+    private String productName;
+    private String productPrice;
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public void setProductName(String productName) {
+        this.productName = productName;
+    }
+
+    public void setProductPrice(String productPrice) {
+        this.productPrice = productPrice;
+    }
+
+    public void setProductImageUrl(String productImageUrl) {
+        this.productImageUrl = productImageUrl;
+    }
+
+    private String productImageUrl;
 
     public String getUrl() {
         return url;
@@ -26,11 +43,17 @@ public class Product {
         return productImageUrl;
     }
 
+    //konstruktor
     public Product(String url, String productName, String productPrice, String productImageUrl) {
         this.url = url;
         this.productName = productName;
         this.productPrice = productPrice;
         this.productImageUrl = productImageUrl;
+
+    }
+
+    //konstruktor
+    public Product() {
 
     }
 
