@@ -14,7 +14,7 @@ public class HtmlParser {
 
     public static void main(String[] args){
         HtmlParser myParser = new HtmlParser();
-        myParser.getPrice();
+        System.out.println(myParser.getProducts());
     }
 
     public HtmlParser() {
