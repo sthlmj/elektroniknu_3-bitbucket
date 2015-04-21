@@ -50,7 +50,7 @@ public class sibaHtmlParser {
             links = Doc.select("img.js-responsive-image");
             i = 0;
             for(Element e: links){
-                Products[i].setProductImageUrl(e.attr("data-src").replace("&amp", "&") + "&width=200");
+                Products[i].setProductImageUrl(e.attr("data-src").replace("&amp", "&") + "&width=1000");
                 i++;
             }
 
