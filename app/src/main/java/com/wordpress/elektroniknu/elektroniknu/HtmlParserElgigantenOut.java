@@ -5,9 +5,6 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -27,18 +24,18 @@ public class HtmlParserElgigantenOut {
         if (Doc != null)
         {
             org.jsoup.select.Elements links = Doc.select("div.article-text.M-1-1.S-1-1 h2 a");
-            String[] catergoryList = new String[links.size()];
+            String[] categoryList = new String[links.size()];
             int i = 0;
             for (Element e : links)
             {
-                catergoryList[i] = e.attr("abs:href");
+                categoryList[i] = e.attr("abs:href");
                 i++;
             }
             for(int j = 0; j < links.size(); j++ )
             {
-                System.out.println(catergoryList[j]);
+                System.out.println(categoryList[j]);
             }
-            return catergoryList;
+            return categoryList;
         }
         else
         {
