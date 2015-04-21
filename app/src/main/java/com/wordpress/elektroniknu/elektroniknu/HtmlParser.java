@@ -10,30 +10,33 @@ import org.jsoup.nodes.Element;
 
 public class HtmlParser {
 
-    private Document Doc = null;
-
     public static void main(String[] args){
-        HtmlParser myParser = new HtmlParser();
-        System.out.println(myParser.getProducts());
+       getProducts();
     }
 
-    public static void getHtml(){
+    public static Product[] getProducts(){
+        Document Doc = null;
         try{
-            Document Doc = Jsoup.connect("http://www.siba.se/aktuella-kampanjer/veckans-erbjudande").get(); // HTML file from their website
+            Doc = Jsoup.connect("http://www.siba.se/aktuella-kampanjer/veckans-erbjudande").get(); // HTML file from their website
         }catch(IOException ex){ // Catch exception
             Logger.getLogger(HtmlParser.class.getName()).log(Level.SEVERE, null, ex); // Print out at log
         }
-    }
-
-    public Product getProducts(){
         if(Doc != null) {
-            org.jsoup.select.Elements links = Doc.select("div.product-box-price");
+            org.jsoup.select.Elements links = Doc.select("div.info h2 a");
+            Product[] Products = new Product[links.size()];
+            int i = 0;
+            for(Element e: links){
+                Products[i].setUrl(e.attr("abs:href"));
+                i++;
+                System.out.println(e.attr("abs:href"));
+            }
+            return Products;
         }else{
             return null;
         }
     }
 
-    public String getPrice(){
+    /*public String getPrice(){
         if(Doc != null){
             org.jsoup.select.Elements links = Doc.select("div.info"); // Select tag from HTML text
             for(Element e: links){
@@ -43,5 +46,5 @@ public class HtmlParser {
         }else{
             return null;
         }
-    }
+    }*/
 }
