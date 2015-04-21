@@ -24,7 +24,7 @@ public class HtmlParserElgigantenIn {
             }
             Doc = Jsoup.connect("http://www.siba.se/aktuella-kampanjer/veckans-erbjudande").get(); // HTML file from their website
         }catch(IOException ex){ // Catch exception
-            Logger.getLogger(HtmlParser.class.getName()).log(Level.SEVERE, null, ex); // Print out at log
+            Logger.getLogger(HtmlParserElgigantenIn.class.getName()).log(Level.SEVERE, null, ex); // Print out at log
         }
         if(Doc != null) {
             org.jsoup.select.Elements links = Doc.select("div.info h2 a");

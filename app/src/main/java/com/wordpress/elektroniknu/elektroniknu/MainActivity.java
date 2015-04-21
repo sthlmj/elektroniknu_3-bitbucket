@@ -3,6 +3,7 @@ package com.wordpress.elektroniknu.elektroniknu;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -32,7 +33,7 @@ public class MainActivity extends ActionBarActivity {
 
         // Data that I want too put in my ListView
         // Array of Strings
-        String[] electronicSupplier;
+       /* String[] electronicSupplier;
         try {
             int lines = TextFileHandler.getLines(getResources());
             electronicSupplier = new String[lines];
@@ -43,19 +44,11 @@ public class MainActivity extends ActionBarActivity {
 
         } catch (IOException e) {
             electronicSupplier = new String[]{"adw", "@da"};
-        }
-
+        }*/
         // ListAdapter too be able to adapt our array in too
         // something that our listview is able to work with
-        ListAdapter theAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_expandable_list_item_1,
-                electronicSupplier);
-
-
-        ListView theListView = (ListView) findViewById(R.id.theListView);
-
-
-        theListView.setAdapter(theAdapter);
-        theListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        new getDatafromserver().execute("");
+        /*theListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 //String electronicSupplier = "You selected" +
@@ -70,7 +63,22 @@ public class MainActivity extends ActionBarActivity {
                 MainActivity.this.startActivity(intent);
 
             }
-        });
+        });*/
+    }
+
+    public class getDatafromserver extends AsyncTask<String, Void, Product[]> {
+
+        @Override
+        protected Product[] doInBackground(String... string) {
+            return sibaHtmlParser.getProducts();
+        }
+
+        @Override
+        protected void onPostExecute(Product[] products) {
+            ListAdapter theAdapter = new productsAdapter(getBaseContext(), products);
+            ListView theListView = (ListView) findViewById(R.id.theListView);
+            theListView.setAdapter(theAdapter);
+        }
     }
 
 
