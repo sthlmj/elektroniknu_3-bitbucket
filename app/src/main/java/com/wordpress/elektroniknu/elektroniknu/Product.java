@@ -9,6 +9,15 @@ public class Product {
     private String productName;
     private String productPrice;
     private String productImageUrl;
+    private String[] productDescription;
+
+    public void setProductDescription(String[] productDescription) {
+        this.productDescription = productDescription;
+    }
+
+    public String[] getProductDescription() {
+        return productDescription;
+    }
 
     public void setUrl(String url) {
         this.url = url;
@@ -54,6 +63,16 @@ public class Product {
     //konstruktor
     public Product() {
 
+    }
+
+    public String toString(){
+        return(productName + " " + "has URL " + url + "\n" +
+                "and price is " + productPrice +"\n"
+                + "and imageURl is " + productImageUrl + "\n" +
+                "and description is "+ "\n" +
+                productDescription[0] + "\n" +
+                productDescription[1] + "\n" +
+                productDescription[2] + "\n\n\n");
     }
 
 
