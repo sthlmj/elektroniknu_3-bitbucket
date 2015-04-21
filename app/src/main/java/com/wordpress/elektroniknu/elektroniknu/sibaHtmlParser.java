@@ -30,7 +30,7 @@ public class sibaHtmlParser {
 
             Product[] Products = new Product[links.size()];
             for(int i = 0; i < links.size(); i++){
-                Products[i] = new Product();
+                Products[i] = new Product("Siba");
             }
 
             int i = 0;

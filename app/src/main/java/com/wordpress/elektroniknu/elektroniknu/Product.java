@@ -10,6 +10,15 @@ public class Product {
     private String productPrice;
     private String productImageUrl;
     private String[] productDescription;
+    private String storeName;
+
+    public void setStoreName(String store) {
+        this.storeName = store;
+    }
+
+    public String getStoreName() {
+        return storeName;
+    }
 
     public void setProductDescription(String[] productDescription) {
         this.productDescription = productDescription;
@@ -63,6 +72,10 @@ public class Product {
     //konstruktor
     public Product() {
 
+    }
+
+    public Product(String storeName) {
+        this.storeName = storeName;
     }
 
     public String toString(){
