@@ -39,34 +39,47 @@ public class Catalog {
         sortProducts(products);
     }
 
+    /*
+    categories:
+    0:Skönhet
+    1:Vitvaror
+    2:Ljud
+    3:Dator och surfplattor
+    4:Bild
+    5:Mobil och tillbehör
+    6:Spel och spelkonsol
+    7:Tv och tillbehör
+    8:Annat
+     */
+
     private void sortProducts(Product[] products){
         String name;
         for(Product p: products){
             name = p.getCategoryName();
             if(contain(name, "Spel")){
-                p.setCategoryName("Spel och spelkonsol");
+                categories[6].addProduct(p);
             }else if(contain(name, "Tv")){
-                p.setCategoryName("Tv och tillbehör");
+                categories[7].addProduct(p);
             }else if(contain(name, "Dator")){
-                p.setCategoryName("Dator och surfplattor");
+                categories[3].addProduct(p);
             }else if(contain(name, "Mobil")){
-                p.setCategoryName("Mobil och tillbehör");
+                categories[5].addProduct(p);
             }else if(contain(name, "Hus")){
-                p.setCategoryName("Annat");
+                categories[8].addProduct(p);
             }else if(contain(name, "Surfplatta")){
-                p.setCategoryName("Dator och surfplattor");
+                categories[3].addProduct(p);
             }else if(contain(name, "Ljud")){
-                p.setCategoryName("Ljud");
+                categories[2].addProduct(p);
             }else if(contain(name, "Hälsa")){
-                p.setCategoryName("Skönhet");
+                categories[0].addProduct(p);
             }else if(contain(name, "Foto")) {
-                p.setCategoryName("Bild");
+                categories[4].addProduct(p);
             }else if(contain(name, "Vitvaror")){
-                p.setCategoryName("Vitvaror");
+                categories[1].addProduct(p);
             }else if(contain(name, "Bild")){
-                p.setCategoryName("Bild");
+                categories[4].addProduct(p);
             }else{
-                p.setCategoryName("Annat");
+                categories[8].addProduct(p);
             }
         }
     }

@@ -1,5 +1,6 @@
 package com.wordpress.elektroniknu.elektroniknu;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -7,13 +8,14 @@ import java.util.List;
  */
 public class Category {
     private String categoryName;
-    private List<Product> productList;
+    private List<Product> productList = new ArrayList();
 
     public void setCategoryName(String categoryName){
         this.categoryName = categoryName;
     }
     public void addProduct(Product product){
         productList.add(product);
+        product.setCategoryName(categoryName);
     }
 
     public Category(){}
