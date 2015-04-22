@@ -77,6 +77,8 @@ public class sibaHtmlParser implements  htmlParser{
                     number++;
                 }
             }
+
+            setSibaProductsCategoryName.setProductsCategoryName(Products);
             products = Arrays.asList(Products);
         }
     }
