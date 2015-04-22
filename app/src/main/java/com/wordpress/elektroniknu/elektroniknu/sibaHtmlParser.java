@@ -1,6 +1,8 @@
 package com.wordpress.elektroniknu.elektroniknu;
 
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.jsoup.Jsoup;
@@ -8,16 +10,19 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 
 
-public class sibaHtmlParser {
+public class sibaHtmlParser implements  htmlParser{
 
-    public static void main(String[] args){
-        Product[] products = getProducts();
-        for(Product p: products){
-            System.out.println(p.toString());
-        }
+    private List<Product> products;
+
+    public sibaHtmlParser() {
+        getProducts();
     }
 
-    public static Product[] getProducts(){
+    public List<Product> getProducts(){
+        return products;
+    }
+
+    public void fetchProducts(){
         Document Doc = null;
         try{
             Doc = Jsoup.connect("http://www.siba.se/aktuella-kampanjer/veckans-erbjudande").get(); // HTML file from their website
@@ -69,9 +74,7 @@ public class sibaHtmlParser {
                     number++;
                 }
             }
-            return Products;
-        }else{
-            return null;
+            products = Arrays.asList(Products);
         }
     }
 

@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.Gravity;
 import android.view.MenuInflater;
@@ -18,6 +19,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import java.io.IOException;
+import java.util.List;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -34,7 +36,7 @@ public class MainActivity extends ActionBarActivity {
         // Data that I want too put in my ListView
 
         // Array of Strings
-        String[] electronicSupplier;
+        /*String[] electronicSupplier;
         try {
             int lines = TextFileHandler.getLines(getResources());
             electronicSupplier = new String[lines];
@@ -45,11 +47,11 @@ public class MainActivity extends ActionBarActivity {
 
         } catch (IOException e) {
             electronicSupplier = new String[]{"adw", "@da"};
-        }
+        }*/
         // ListAdapter too be able to adapt our array in too
         // something that our listview is able to work with
-        //new getProductsfromserver().execute();
-        ListAdapter theAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_expandable_list_item_1, electronicSupplier);
+        new getProductsfromserver().execute((htmlParser)new sibaHtmlParser());
+        /*ListAdapter theAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_expandable_list_item_1, electronicSupplier);
         ListView theListView = (ListView) findViewById(R.id.theListView);
         theListView.setAdapter(theAdapter);
 
@@ -68,18 +70,21 @@ public class MainActivity extends ActionBarActivity {
                 MainActivity.this.startActivity(intent);
 
             }
-        });
+        });*/
     }
 
-    public class getProductsfromserver extends AsyncTask<Void, Void, Product[]> {
+    public class getProductsfromserver extends AsyncTask<htmlParser, Void, Product[]> {
 
         @Override
-        protected Product[] doInBackground(Void... string) {
-            return sibaHtmlParser.getProducts();
+        protected Product[] doInBackground(htmlParser... parsers) {
+            List<Product> productList = parsers[0].getProducts();
+            System.out.println(productList.toString() + "00000000000000000000000000");
+            Product[] productArray = new Product[productList.size()];
+            return productList.toArray(productArray);
         }
 
         @Override
-        protected void onPostExecute(Product[] products) {
+        protected void onPostExecute( Product[] products) {
             ListAdapter theAdapter = new productsAdapter(getBaseContext(), products);
             ListView theListView = (ListView) findViewById(R.id.theListView);
             theListView.setAdapter(theAdapter);

@@ -11,6 +11,16 @@ public class Product {
     private String productImageUrl;
     private String[] productDescription;
     private String storeName;
+    private String categoryName;
+
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
+    }
+
+    public String getCategoryName() {
+        return categoryName;
+
+    }
 
     public void setStoreName(String store) {
         this.storeName = store;
