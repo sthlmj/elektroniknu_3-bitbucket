@@ -47,7 +47,7 @@ public class MainActivity extends ActionBarActivity {
         }*/
         // ListAdapter too be able to adapt our array in too
         // something that our listview is able to work with
-        new getDatafromserver().execute("");
+        new getProductsfromserver().execute();
         /*theListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -66,10 +66,10 @@ public class MainActivity extends ActionBarActivity {
         });*/
     }
 
-    public class getDatafromserver extends AsyncTask<String, Void, Product[]> {
+    public class getProductsfromserver extends AsyncTask<Void, Void, Product[]> {
 
         @Override
-        protected Product[] doInBackground(String... string) {
+        protected Product[] doInBackground(Void... string) {
             return sibaHtmlParser.getProducts();
         }
 
