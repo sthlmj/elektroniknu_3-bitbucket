@@ -25,7 +25,7 @@ public class sibaHtmlParser implements  htmlParser{
         return products;
     }
 
-    public void fetchProducts(){
+    private void fetchProducts(){
         Document Doc = null;
         try{
             Doc = Jsoup.connect("http://www.siba.se/aktuella-kampanjer/veckans-erbjudande").get(); // HTML file from their website

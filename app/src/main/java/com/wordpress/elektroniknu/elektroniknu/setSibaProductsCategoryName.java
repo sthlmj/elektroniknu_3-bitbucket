@@ -14,10 +14,8 @@ public class setSibaProductsCategoryName {
                 Element e = doc.select("div.links li").first();
                 try {
                     p.setCategoryName(e.text());
-                    System.out.println(e.text());
                 }catch(NullPointerException exception){
                     p.setCategoryName("Annat");
-                    System.out.println("Annat");
                 }
             }
         } catch (IOException e) {
