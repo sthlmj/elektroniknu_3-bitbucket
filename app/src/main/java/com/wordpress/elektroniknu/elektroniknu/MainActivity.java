@@ -19,6 +19,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import java.io.IOException;
+import java.util.LinkedList;
 import java.util.List;
 
 
@@ -77,14 +78,14 @@ public class MainActivity extends ActionBarActivity {
 
         @Override
         protected Product[] doInBackground(htmlParser... parsers) {
+            parsers[0].startFetch();
             List<Product> productList = parsers[0].getProducts();
-            System.out.println(productList.toString() + "00000000000000000000000000");
             Product[] productArray = new Product[productList.size()];
             return productList.toArray(productArray);
         }
 
         @Override
-        protected void onPostExecute( Product[] products) {
+        protected void onPostExecute(Product[] products) {
             ListAdapter theAdapter = new productsAdapter(getBaseContext(), products);
             ListView theListView = (ListView) findViewById(R.id.theListView);
             theListView.setAdapter(theAdapter);

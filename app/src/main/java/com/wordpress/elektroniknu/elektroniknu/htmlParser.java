@@ -7,4 +7,6 @@ import java.util.List;
  */
 interface htmlParser {
     public List<Product> getProducts();
+
+    public void startFetch();
 }

@@ -15,7 +15,10 @@ public class sibaHtmlParser implements  htmlParser{
     private List<Product> products;
 
     public sibaHtmlParser() {
-        getProducts();
+    }
+
+    public void startFetch(){
+        fetchProducts();
     }
 
     public List<Product> getProducts(){
