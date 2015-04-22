@@ -82,16 +82,4 @@ public class sibaHtmlParser implements  htmlParser{
             products = Arrays.asList(Products);
         }
     }
-
-    /*public String getPrice(){
-        if(Doc != null){
-            org.jsoup.select.Elements links = Doc.select("div.info"); // Select tag from HTML text
-            for(Element e: links){
-                System.out.println(e.attr("div.product-boxprice"));
-            }
-            return links.toString();
-        }else{
-            return null;
-        }
-    }*/
 }

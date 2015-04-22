@@ -8,7 +8,6 @@ import java.util.List;
 
 
 public class HtmlParserForEnCat {
-
     //get products from one document
         public static List<Product> getProducts(Document Doc) {
             if (Doc != null) {
