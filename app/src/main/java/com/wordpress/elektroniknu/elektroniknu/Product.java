@@ -66,13 +66,15 @@ public class Product {
     }
 
     public String toString(){
-        return(productName + " " + "has URL " + url + "\n" +
+        String description = "";
+        for(String s: this.getProductDescription()){
+            description += s + "\n";
+        }
+        String wholeDescription = productName + " " + "has URL " + url + "\n" +
                 "and price is " + productPrice +"\n"
-                + "and imageURl is " + productImageUrl + "\n" +
-                "and description is "+ "\n" +
-                productDescription[0] + "\n" +
-                productDescription[1] + "\n" +
-                productDescription[2] + "\n\n\n");
+                + "and imageURl is " + productImageUrl + "\n" + description;
+
+        return wholeDescription;
     }
 
 
