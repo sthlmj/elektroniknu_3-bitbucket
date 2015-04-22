@@ -16,7 +16,6 @@ import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
-
 import java.io.IOException;
 import java.util.List;
 
@@ -30,6 +29,8 @@ public class MainActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // Set the first screen the user should view
         setContentView(R.layout.activity_main);
 
         // Data that I want too put in my ListView
@@ -37,13 +38,19 @@ public class MainActivity extends ActionBarActivity {
         // Array of Strings
         String[] electronicSupplier;
         try {
+            // Get how many lines the resource file should be
             int lines = TextFileHandler.getLines(getResources());
+
+            // Create an new array with the size of lines
             electronicSupplier = new String[lines];
+
+            // Put store names in the array
+            // with for loop
             for(int i=0; i<lines; i++){
                 electronicSupplier[i] = TextFileHandler.getStoreName(i+1, getResources());
 
             }
-
+        // Catch IOException put dummycode in string
         } catch (IOException e) {
             electronicSupplier = new String[]{"adw", "@da"};
         }
@@ -52,20 +59,26 @@ public class MainActivity extends ActionBarActivity {
         //new getProductsfromserver().execute((htmlParser)new sibaHtmlParser());
         ListAdapter theAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_expandable_list_item_1, electronicSupplier);
         ListView theListView = (ListView) findViewById(R.id.theListView);
+
         theListView.setAdapter(theAdapter);
 
         theListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                //String electronicSupplier = "You selected" +
-                //      String.valueOf(adapterView.getItemAtPosition(i));
 
-                //      Toast.makeText(MainActivity.this, electronicSupplier,
-                //      Toast.LENGTH_SHORT).show();
-
+                // because TextFileHandler starts at one we set
+                // our index too 1 too
                 int val = i + 1;
+
+                // This intent it used too start another activity
+                // The first parameter is the context of the intent
+                // The second parameter is the activity the intent should start
                 Intent intent = new Intent(MainActivity.this, StorePdfActivity.class);
+
+                // Add extra data to the intent
                 intent.putExtra("key", val);
+
+                // Starts the other Activity
                 MainActivity.this.startActivity(intent);
 
             }

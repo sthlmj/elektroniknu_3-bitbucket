@@ -31,10 +31,10 @@ public class HtmlParserElgigantenOut {
                 categoryList[i] = e.attr("abs:href");
                 i++;
             }
-            for(int j = 0; j < links.size(); j++ )
+           /* for(int j = 0; j < links.size(); j++ )
             {
                 System.out.println(categoryList[j]);
-            }
+            }*/
             return categoryList;
         }
         else

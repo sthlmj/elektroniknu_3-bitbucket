@@ -5,60 +5,44 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-
+//htmlparser for the html under catergories
 public class HtmlParserElgigantenIn {
 
-    public static void main(String[] args){
-
+    public static void main(String[] args) { //main for test
+        products();
     }
 
-    public static Product[] getProducts(){
-        Document Doc = null;
-        try{
-            String[] listofCategories = HtmlParserElgigantenOut.getCatergoryList();
-            for(int i = 0; i < HtmlParserElgigantenOut.getCatergoryList().length; i++){
+    public static List<Product> products() {
+        String[] listofCategories = HtmlParserElgigantenOut.getCatergoryList();// get list of catergories
+        List<Document> Docs = new ArrayList<Document>();// for record list of documents
+        List<Product> listOfAllProducts = new ArrayList<Product>(); // for save all the products
 
+        for (int i = 0; i < HtmlParserElgigantenOut.getCatergoryList().length; i++) {  //for every catergory we have, get the products inside.
+            try {
+                Docs.add(Jsoup.connect(listofCategories[i]).get()); // HTML file from their website
+            } catch (IOException ex) { // Catch exception
+                Logger.getLogger(HtmlParserElgigantenIn.class.getName()).log(Level.SEVERE, null, ex); // Print out at log
             }
-            Doc = Jsoup.connect("http://www.siba.se/aktuella-kampanjer/veckans-erbjudande").get(); // HTML file from their website
-        }catch(IOException ex){ // Catch exception
-            Logger.getLogger(HtmlParserElgigantenIn.class.getName()).log(Level.SEVERE, null, ex); // Print out at log
         }
-        if(Doc != null) {
-            org.jsoup.select.Elements links = Doc.select("div.info h2 a");
-            Product[] Products = new Product[links.size()];
-            for(int i = 0; i < links.size(); i++){
-                Products[i] = new Product();
-            }
-            int i = 0;
-            for(Element e: links){
-                Products[i].setUrl(e.attr("abs:href"));
-                Products[i].setProductName(e.ownText());
-                i++;
-            }
-            links = Doc.select("div.product-box-price");
-            i = 0;
-            for(Element e: links){
-                Products[i].setProductPrice(e.ownText().replace(" ", ""));
-                System.out.println(e.ownText().replace(" ", ""));
-            }
-            return Products;
-        }else{
-            return null;
+        for(int j = 0; j < Docs.size(); j++)
+        {
+            listOfAllProducts.addAll(HtmlParserForEnCat.getProducts(Docs.get(j))); //get products from every catergory and combine them into one list
         }
+       /*for(int j = 0; j < listOfAllProducts.size(); j++) //for test
+        {
+            System.out.println(listOfAllProducts.get(j).getProductName());
+            System.out.println(listOfAllProducts.get(j).getUrl());
+            System.out.println(listOfAllProducts.get(j).getProductImageUrl());
+            System.out.println(listOfAllProducts.get(j).getProductPrice());
+            System.out.println(listOfAllProducts.get(j).getProductDescription());
+            System.out.println("....................................................");
+        }*/
+        return listOfAllProducts;
     }
 
-    /*public String getPrice(){
-        if(Doc != null){
-            org.jsoup.select.Elements links = Doc.select("div.info"); // Select tag from HTML text
-            for(Element e: links){
-                System.out.println(e.attr("div.product-boxprice"));
-            }
-            return links.toString();
-        }else{
-            return null;
-        }
-    }*/
 }
