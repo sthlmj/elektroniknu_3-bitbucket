@@ -32,6 +32,7 @@ public class MainActivity extends ActionBarActivity {
         setContentView(R.layout.activity_main);
 
         // Data that I want too put in my ListView
+
         // Array of Strings
         String[] electronicSupplier;
         try {
