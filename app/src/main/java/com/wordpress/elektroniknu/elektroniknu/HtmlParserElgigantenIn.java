@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-//htmlparser for the html under catergories
+//htmlparser for the html under categories
 public class HtmlParserElgigantenIn {
 
     public static void main(String[] args) { //main for test
@@ -18,11 +18,11 @@ public class HtmlParserElgigantenIn {
     }
 
     public static List<Product> products() {
-        String[] listofCategories = HtmlParserElgigantenOut.getCatergoryList();// get list of catergories
+        String[] listofCategories = HtmlParserElgigantenOut.getCategoryList();// get list of categories
         List<Document> Docs = new ArrayList<Document>();// for record list of documents
         List<Product> listOfAllProducts = new ArrayList<Product>(); // for save all the products
 
-        for (int i = 0; i < HtmlParserElgigantenOut.getCatergoryList().length; i++) {  //for every catergory we have, get the products inside.
+        for (int i = 0; i < HtmlParserElgigantenOut.getCategoryList().length; i++) {  //for every category we have, get the products inside.
             try {
                 Docs.add(Jsoup.connect(listofCategories[i]).get()); // HTML file from their website
             } catch (IOException ex) { // Catch exception
@@ -31,7 +31,7 @@ public class HtmlParserElgigantenIn {
         }
         for(int j = 0; j < Docs.size(); j++)
         {
-            listOfAllProducts.addAll(HtmlParserForEnCat.getProducts(Docs.get(j))); //get products from every catergory and combine them into one list
+            listOfAllProducts.addAll(HtmlParserForEnCat.getProducts(Docs.get(j))); //get products from every category and combine them into one list
         }
        /*for(int j = 0; j < listOfAllProducts.size(); j++) //for test
         {
