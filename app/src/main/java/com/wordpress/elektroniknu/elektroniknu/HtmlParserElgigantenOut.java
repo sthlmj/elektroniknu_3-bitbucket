@@ -11,10 +11,10 @@ import java.util.logging.Logger;
 public class HtmlParserElgigantenOut {
 
     public static void main(String[] args) {
-        getCatergoryList();
+        getCategoryList();
     }
 
-    public static String[] getCatergoryList() {
+    public static String[] getCategoryList() {
         Document Doc = null;
         try {
             Doc = Jsoup.connect("http://www.elgiganten.se/cms/veckans-annons/veckans-erbjudanden").get(); // HTML file from their website
@@ -31,10 +31,6 @@ public class HtmlParserElgigantenOut {
                 categoryList[i] = e.attr("abs:href");
                 i++;
             }
-           /* for(int j = 0; j < links.size(); j++ )
-            {
-                System.out.println(categoryList[j]);
-            }*/
             return categoryList;
         }
         else
