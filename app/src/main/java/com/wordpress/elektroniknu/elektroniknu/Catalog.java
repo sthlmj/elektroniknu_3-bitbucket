@@ -1,6 +1,5 @@
 package com.wordpress.elektroniknu.elektroniknu;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -83,9 +82,9 @@ public class Catalog {
             }
         }
     }
-
+    //changes uppercase letters to lowercase
     private boolean contain(String s1, String s2){
-        return s1.toUpperCase().contains(s2.toUpperCase());
+        return s1.toLowerCase().contains(s2.toLowerCase());
     }
 
 
