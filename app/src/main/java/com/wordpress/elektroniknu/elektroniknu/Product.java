@@ -12,6 +12,7 @@ public class Product {
     private String[] productDescription;
     private String storeName;
     private String categoryName;
+    private String serialNumber;
 
     public void setCategoryName(String categoryName) {
         this.categoryName = categoryName;
@@ -100,5 +101,11 @@ public class Product {
         return wholeDescription;
     }
 
+    public void setSerialNumber(String serialNumber) {
+        this.serialNumber = serialNumber;
+    }
 
+    public String getSerialNumber() {
+        return serialNumber;
+    }
 }

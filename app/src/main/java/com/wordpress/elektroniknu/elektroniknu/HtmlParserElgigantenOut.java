@@ -3,17 +3,11 @@ package com.wordpress.elektroniknu.elektroniknu;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
-
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class HtmlParserElgigantenOut {
-
-    public static void main(String[] args) {
-        getCategoryList();
-    }
-
     public static String[] getCategoryList() {
         Document Doc = null;
         try {
