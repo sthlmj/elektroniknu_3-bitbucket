@@ -78,8 +78,10 @@ public class sibaHtmlParser implements  htmlParser{
                     number++;
                 }
             }
-
+            long startTime = System.currentTimeMillis();
             setSibaProductsCategoryName.setProductsCategoryName(Products);
+            long endTime = System.currentTimeMillis();
+            System.out.println("Product name " + (endTime - startTime) + " milliseconds");
             products = Arrays.asList(Products);
         }
     }

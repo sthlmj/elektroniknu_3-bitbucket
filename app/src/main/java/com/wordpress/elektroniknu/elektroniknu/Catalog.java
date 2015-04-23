@@ -14,9 +14,9 @@ public class Catalog {
         long startTime = System.currentTimeMillis();
         sibaHtmlParser parser = new sibaHtmlParser();
         parser.startFetch();
+        long endTime = System.currentTimeMillis();
         List<Product> productList = parser.getProducts();
         Catalog catalog = new Catalog(productList.toArray(new Product[productList.size()]));
-        long endTime = System.currentTimeMillis();
         System.out.println("That took " + (endTime - startTime) + " milliseconds");
     }
     Category[] categories;
@@ -39,7 +39,7 @@ public class Catalog {
     }
 
     /*
-    categories:
+    Categories:
     0:Skönhet
     1:Vitvaror
     2:Ljud
