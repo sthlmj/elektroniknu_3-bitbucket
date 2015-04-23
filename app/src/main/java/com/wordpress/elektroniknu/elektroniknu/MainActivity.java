@@ -85,11 +85,11 @@ public class MainActivity extends ActionBarActivity {
         });
     }
 
-    public class getProductsfromserver extends AsyncTask<htmlParser, Void, Product[]> {
+    public class getProductsfromserver extends AsyncTask<HtmlParser, Void, Product[]> {
 
         @Override
-        protected Product[] doInBackground(htmlParser... parsers) {
-            parsers[0].startFetch();
+        protected Product[] doInBackground(HtmlParser... parsers) {
+            parsers[0].startParser();
             List<Product> productList = parsers[0].getProducts();
             Product[] productArray = new Product[productList.size()];
             return productList.toArray(productArray);

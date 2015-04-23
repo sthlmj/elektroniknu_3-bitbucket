@@ -9,7 +9,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 //htmlparser for the html under categories
-public class HtmlParserElgigantenIn implements htmlParser{
+public class HtmlParserElgigantenIn implements HtmlParser {
     private List<Product> products;
 
     public HtmlParserElgigantenIn(){
@@ -20,7 +20,7 @@ public class HtmlParserElgigantenIn implements htmlParser{
         return products;
     }
 
-    public void startFetch(){
+    public void startParser(){
         fetchProducts();
     }
 

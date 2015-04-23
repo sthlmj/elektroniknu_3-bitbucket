@@ -34,9 +34,9 @@ public class HtmlParserForEnCat {
                     i++;
                 }
                 //get url of images
-                links = Doc.select("div.col.col-mini-product.fixed div.mini-product div.mini-left-content div.visuals a.product-image-link img.product-image");
+                Elements img = Doc.select("div.col.col-mini-product.fixed div.mini-product div.mini-left-content div.visuals a.product-image-link img.product-image");
                 i = 0;
-                for (Element e : links) {
+                for (Element e : img) {
                     Products[i].setProductImageUrl(e.attr("src").replace("&#47;", "/").replace("?$prod_tnbg$",""));
                     i++;
                 }
@@ -60,11 +60,11 @@ public class HtmlParserForEnCat {
                 String Name = categoryNames.get(1).text().replace("Veckans erbjudanden ","");*/
 
                 Element categoryNames = Doc.select("title").first();
-                String Name = categoryNames.text();//.replace("Veckans erbjudanden ","");
+                String Name = categoryNames.text().replace("Veckans erbjudanden ","");
 
 
                 //set categorys name to each product
-                for(int ulnumber = 0; ulnumber < ul.size(); ulnumber++)
+                for(int ulnumber = 0; ulnumber < img.size(); ulnumber++)
                 {
                     Products[ulnumber].setCategoryName(Name);
                 }

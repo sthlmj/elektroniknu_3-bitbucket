@@ -10,9 +10,9 @@ import java.util.concurrent.Executors;
 
 
 public class setSibaProductsCategoryName {
-    public static void setProductsCategoryName(Product[] products) {
+    public static void setProductsCategoryName(Product[] productList) {
         ExecutorService executor = Executors.newFixedThreadPool(8);
-        for (Product p : products) {
+        for (Product p : productList) {
             MyRunnable newThread = new MyRunnable(p);
             executor.execute(newThread);
         }
@@ -22,13 +22,14 @@ public class setSibaProductsCategoryName {
     }
     public static class MyRunnable implements Runnable{
         private final Product p;
+
         MyRunnable(Product p){
             this.p = p;
         }
         public void run() {
             Document doc = null;   //get productName
             try {
-                doc = Jsoup.connect("http://www.siba.se/searchresults?query=" + p.getProductName().replace(" ", "+")).get();
+                doc = Jsoup.connect("http://www.siba.se/searchresults?query=" + p.getProductName().replace(" ", "+").replace("&", "%26")).get();
                 Element e = doc.select("div.links li").first();                             //get products first category
 
                 try {
