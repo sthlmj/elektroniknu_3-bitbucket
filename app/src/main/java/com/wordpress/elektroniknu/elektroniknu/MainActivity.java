@@ -29,11 +29,12 @@ public class MainActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         // Set the first screen the user should view
         setContentView(R.layout.activity_main);
 
         // Data that I want too put in my ListView
+        Catalog catalog = new Catalog();
+
 
         // Array of Strings
         String[] electronicSupplier;
