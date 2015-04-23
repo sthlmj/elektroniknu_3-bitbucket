@@ -1,11 +1,8 @@
 package com.wordpress.elektroniknu.elektroniknu;
 
 import java.util.List;
-
-/**
- * Created by chenz_000 on 2015-04-22.
- */
 public class Catalog {
+    //START CATALOG ACTIVITY WITH A MAIN CLASS
     public static void main(String[] args){
         /*Product product = new Product();
         product.setCategoryName("spel");
@@ -36,13 +33,20 @@ public class Catalog {
             System.out.println("/n ");
         }*/
     }
+
+    //PROPERTIES OF OUR CATALOG
     private Category[] categories;
 
+    //CATALOG CONSTRUCTOR - defines every category name in a catalog, needs no input
     public Catalog() {
-        categories = new Category[9];
+        categories = new Category[9];                         //Catalog contains 9 categories
+
+        //Creates 1 Category Object for every index in Catalog
         for(int i = 0; i < categories.length; i++){
             categories[i] = new Category();
         }
+
+        //Sets name of categories
         categories[0].setCategoryName("Skönhet");
         categories[1].setCategoryName("Vitvaror");
         categories[2].setCategoryName("Ljud");
@@ -54,9 +58,8 @@ public class Catalog {
         categories[8].setCategoryName("Annat");
     }
 
-    public Category[] getCategories() {
-        return categories;
-    }
+    public Category[] getCategories(){return categories;}
+
     /*
     Categories:
     0:Skönhet
@@ -70,12 +73,13 @@ public class Catalog {
     8:Annat
      */
 
+    //Sorts products into categories
     private void sortProducts(Product[] products){
         String name;
 
         for(Product p: products){
             name = p.getCategoryName();
-            try {
+            try {                                       //try match a products category name with our categories
                 if (contain(name, "Spel")) {
                     categories[6].addProduct(p);
                 } else if (contain(name, "Tv")) {
@@ -101,16 +105,14 @@ public class Catalog {
                 } else {
                     categories[8].addProduct(p);
                 }
-            }catch (NullPointerException e){
+            }catch (NullPointerException e){            //catch a product with no category name
                 categories[8].addProduct(p);
             }
         }
     }
-    //changes uppercase letters to lowercase
+
+    //Changes uppercase letters to lowercase
     private boolean contain(String s1, String s2){
         return s1.toLowerCase().contains(s2.toLowerCase());
     }
-
-
-
 }
