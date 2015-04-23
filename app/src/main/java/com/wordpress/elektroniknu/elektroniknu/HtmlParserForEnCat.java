@@ -56,8 +56,12 @@ public class HtmlParserForEnCat {
                 }
 
                 //get categoryNames
-                Elements categoryNames = Doc.select("ol.breadcrumbs.S-1-1 li");
-                String Name = categoryNames.get(1).text().replace("Veckans erbjudanden ","");
+                /*Elements categoryNames = Doc.select("ol.breadcrumbs.S-1-1 li");
+                String Name = categoryNames.get(1).text().replace("Veckans erbjudanden ","");*/
+
+                Element categoryNames = Doc.select("title").first();
+                String Name = categoryNames.text();//.replace("Veckans erbjudanden ","");
+
 
                 //set categorys name to each product
                 for(int ulnumber = 0; ulnumber < ul.size(); ulnumber++)
