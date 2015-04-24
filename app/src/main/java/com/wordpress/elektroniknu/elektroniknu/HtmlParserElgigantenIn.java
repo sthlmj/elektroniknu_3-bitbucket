@@ -11,6 +11,7 @@ import java.util.logging.Logger;
 //htmlparser for the html under categories
 public class HtmlParserElgigantenIn implements HtmlParser {
     private List<Product> products;
+    private Product[] productArray;
 
     public HtmlParserElgigantenIn(){
 
@@ -18,6 +19,10 @@ public class HtmlParserElgigantenIn implements HtmlParser {
 
     public List<Product> getProducts(){
         return products;
+    }
+
+    public Product[] getProductArray(){
+        return productArray;
     }
 
     public void startParser(){
@@ -40,7 +45,11 @@ public class HtmlParserElgigantenIn implements HtmlParser {
         {
             listOfAllProducts.addAll(HtmlParserForEnCat.getProducts(Docs.get(j))); //get products from every category and combine them into one list
         }
+        for(Product p: listOfAllProducts){
+            p.setStoreName("Elgiganten");
+        }
         products = listOfAllProducts;
+        productArray = products.toArray(new Product[products.size()]);
     }
 
 }

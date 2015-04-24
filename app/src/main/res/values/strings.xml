@@ -1,6 +1,7 @@
 <resources>
-    <string name="app_name">ElektronikNU</string>
-
+    <string
+        name="app_name">ElektronikNu
+    </string>
     <string name="hello_world">Hello world!</string>
     <string name="action_about">About us</string>
     <string name="action_settings">Settings</string>
@@ -14,4 +15,5 @@
     <string name="action_favorite">Favorite</string>
 
     <string name="title_activity_store_pdf">StorePdfActivity</string>
+    <string name="title_activity_product">ProductActivity</string>
 </resources>

@@ -1,9 +1,11 @@
 package com.wordpress.elektroniknu.elektroniknu;
 
+import java.io.Serializable;
+
 /**
  * Skapar objekt med dom variabler
  */
-public class Product {
+public class Product implements Serializable{
 
     private String url;
     private String productName;

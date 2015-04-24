@@ -1,9 +1,10 @@
 package com.wordpress.elektroniknu.elektroniknu;
 
+import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
 
-public class Category {
+public class Category implements Serializable {
 
     //PROPERTIES OF A CATEGORY
     private String categoryName;
@@ -31,5 +32,10 @@ public class Category {
     //GET THE LIST OF ALL PRODUCTS
     public List<Product> getProductList() {
         return productList;
+    }
+
+    public Product[] getProductArray(){
+        Product[] productsArray = productList.toArray(new Product[productList.size()]);
+        return productsArray;
     }
 }

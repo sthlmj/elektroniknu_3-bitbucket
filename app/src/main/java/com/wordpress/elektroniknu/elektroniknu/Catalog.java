@@ -1,8 +1,9 @@
 package com.wordpress.elektroniknu.elektroniknu;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class Catalog {
+public class Catalog implements Serializable{
     //START CATALOG ACTIVITY WITH A MAIN CLASS
     public static void main(String[] args){
         Catalog catalog = new Catalog();                    //create Object Catalog
@@ -54,7 +55,13 @@ public class Catalog {
         categories[9].setCategoryName("Annat");
     }
 
-    public Category[] getCategories(){return categories;}
+    public Category[] getCategories(){
+        return categories;
+    }
+
+    public Category getCategories(int i){
+        return categories[i];
+    }
 
     /*
     Categories:
@@ -71,7 +78,7 @@ public class Catalog {
     */
 
     //Sorts products into categories
-    private void sortProducts(Product[] products){
+    public void sortProducts(Product[] products){
         String name;
         for(Product p: products){
             name = p.getCategoryName();
