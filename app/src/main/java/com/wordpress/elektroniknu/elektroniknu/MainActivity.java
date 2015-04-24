@@ -23,11 +23,9 @@ import java.util.concurrent.ExecutionException;
 
 public class MainActivity extends ActionBarActivity {
 
+    //CREATE NEW CATALOG
      Catalog catalog = new Catalog();
-    /**
-     * Implementation of ListView
-     * @param savedInstanceState
-     */
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,30 +52,34 @@ public class MainActivity extends ActionBarActivity {
         } catch (IOException e) {
             electronicSupplier = new String[]{"adw", "@da"};
         }
+
         // ListAdapter too be able to adapt our array in too
         // something that our listview is able to work with
-
         ListAdapter theAdapter = new storesAdapter(this,electronicSupplier);
         ListView theListView = (ListView) findViewById(R.id.theListView);
-
         theListView.setAdapter(theAdapter);
+
+        // Set Actionbar Title
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         getSupportActionBar().setCustomView(R.layout.titlebar);
 
+        // Set Title ("Produkter"/"Butiker"/"Kategori")
         TextView titleTextView = (TextView) findViewById(R.id.titleTextView);
         titleTextView.setText("Butiker");
 
+        // Create Parser Object of stores
         sibaHtmlParser sibaParser = new sibaHtmlParser();
         elgigantenHtmlParser elgigantenParser = new elgigantenHtmlParser();
         try {
-            catalog.sortProducts(new getProductsfromserver().execute((HtmlParser) elgigantenParser).get());
-            catalog.sortProducts(new getProductsfromserver().execute((HtmlParser) sibaParser).get());
+            catalog.sortProducts(new getProductsfromserver().execute((HtmlParser) elgigantenParser).get()); //start new Thread which will parse and put in catalog
+            catalog.sortProducts(new getProductsfromserver().execute((HtmlParser) sibaParser).get());       //start new Thread which will parse and put in catalog
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {
             e.printStackTrace();
         }
 
+        //ONCLICK LISTS ON OUR LISTVIEW
         theListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -98,7 +100,7 @@ public class MainActivity extends ActionBarActivity {
 
                     // Starts the other Activity
                     MainActivity.this.startActivity(intent);
-                }else{
+                }else{ //if on "Produktvy", create new Intent with Category Objects
                     Intent intent = new Intent(MainActivity.this, ProductActivity.class);
                     intent.putExtra("Category", (java.io.Serializable) catalog.getCategories(i));
                     MainActivity.this.startActivity(intent);
@@ -107,8 +109,11 @@ public class MainActivity extends ActionBarActivity {
         });
     }
 
+    //WHEN CLICK ON ARROW BUTTON ON TITLE
     public void onPreviosImageButtonClick(View v){
         TextView titleTextView = (TextView) findViewById(R.id.titleTextView);
+
+        //if title is "Butiker", open corresponding listView
         if(titleTextView.getText().equals("Butiker")){
             Category[] categories = catalog.getCategories();
             String[] categoriesName = new String[categories.length];
@@ -117,10 +122,13 @@ public class MainActivity extends ActionBarActivity {
                 categoriesName[i] = c.getCategoryName();
                 i++;
             }
+
+            //Use Adapter to define the design of the listView
             ListAdapter theAdapter = new storesAdapter(this,categoriesName);
             ListView theListView = (ListView) findViewById(R.id.theListView);
-
             theListView.setAdapter(theAdapter);
+
+            //DON'T TOUCH
             getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
             getSupportActionBar().setCustomView(R.layout.titlebar);
             titleTextView.setText("Produkter");
@@ -153,6 +161,7 @@ public class MainActivity extends ActionBarActivity {
         }
     }
 
+    //EXACTLY AS onPreviousImageButtonClick()
     public void onNextImageButtonClick(View v){
         TextView titleTextView = (TextView) findViewById(R.id.titleTextView);
         if(titleTextView.getText().equals("Butiker")){
@@ -200,25 +209,20 @@ public class MainActivity extends ActionBarActivity {
     }
 
     public class getProductsfromserver extends AsyncTask<HtmlParser, Void, Product[]> {
-
         @Override
+        //Starts new parsers with thread
         protected Product[] doInBackground(HtmlParser... parsers) {
             parsers[0].startParser();
             return parsers[0].getProductArray();
         }
 
         @Override
+        //SHOW A TOAST WHEN PARSING IS DONE
         protected void onPostExecute(Product[] products) {
             Toast.makeText(getBaseContext(), "Klar", Toast.LENGTH_LONG).show();
         }
     }
 
-
-    /**
-     * ????????? vad gör den här ????
-     * @param menu
-     * @return
-     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.

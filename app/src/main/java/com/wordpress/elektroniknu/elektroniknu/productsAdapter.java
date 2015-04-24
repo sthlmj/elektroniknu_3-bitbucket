@@ -1,34 +1,29 @@
 package com.wordpress.elektroniknu.elektroniknu;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.os.AsyncTask;
-import android.util.Log;
-import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
-import java.io.InputStream;
-
 
 class productsAdapter extends ArrayAdapter<Product>{
 
+    //CONSTRUCTOR
     productsAdapter(Context context, Product[] products) {
         super(context, R.layout.product_row, products);
     }
 
+    //ADAPT PROPERTIES OF EVERY VIEW OBJECT
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         LayoutInflater myInflater = LayoutInflater.from(getContext());
         View productView = myInflater.inflate(R.layout.product_row, parent, false);
 
         Product product = getItem(position);
+
+        //LINK TO EVERY VIEW OBJECT IN XML
         WebView productImageView = (WebView) productView.findViewById(R.id.produktWebView);
         TextView productNameTextView = (TextView) productView.findViewById(R.id.produktNameTextView);
         TextView storeTextView = (TextView) productView.findViewById(R.id.storeTextView);
@@ -37,7 +32,7 @@ class productsAdapter extends ArrayAdapter<Product>{
         TextView description2TextView = (TextView) productView.findViewById(R.id.description2TextView);
         TextView description3TextView = (TextView) productView.findViewById(R.id.description3TextView);
 
-
+        //ADAPTS THE PROPERTIES ON WHOLE PRODUCT ROW
         String html = "<html><body><img src=\"" + product.getProductImageUrl() + "\" width=\"100%\" height=\"100%\"\"/></body></html>";
         productImageView.loadData(html, "text/html", null);
         productNameTextView.setText(product.getProductName());
@@ -83,5 +78,4 @@ class productsAdapter extends ArrayAdapter<Product>{
             bmImage.setImageBitmap(result);
         }
     }*/
-
 }

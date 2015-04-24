@@ -108,7 +108,8 @@ public class sibaHtmlParser implements HtmlParser {
         while(!executor.isTerminated());
 
     }
-    public static class MyRunnable implements Runnable{                         //multithreads for faster result
+    //Multithreads for faster result
+    public static class MyRunnable implements Runnable{
         private final Product p;
 
         MyRunnable(Product p){

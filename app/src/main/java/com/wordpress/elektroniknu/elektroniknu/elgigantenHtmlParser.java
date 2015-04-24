@@ -57,11 +57,11 @@ public class elgigantenHtmlParser implements HtmlParser {
         try {
             Doc = Jsoup.connect("http://www.elgiganten.se/cms/veckans-annons/veckans-erbjudanden").get(); // HTML file from their website
         } catch (IOException ex) { // Catch exception
-            Logger.getLogger(elgigantenHtmlParser.class.getName()).log(Level.SEVERE, null, ex); // Print out at log
+            Logger.getLogger(elgigantenHtmlParser.class.getName()).log(Level.SEVERE, null, ex);     // Print out at log
         }
         if (Doc != null)
         {
-            org.jsoup.select.Elements links = Doc.select("div.article-text.M-1-1.S-1-1 h2 a");
+            org.jsoup.select.Elements links = Doc.select("div.article-text.M-1-1.S-1-1 h2 a");      //links all categories
             String[] categoryList = new String[links.size()];
             int i = 0;
             for (Element e : links)
