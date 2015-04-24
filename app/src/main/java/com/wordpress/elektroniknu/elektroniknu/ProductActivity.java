@@ -23,7 +23,7 @@ public class ProductActivity extends ActionBarActivity {
         ListAdapter theAdapter = new productsAdapter(this, category.getProductArray());
         ListView theListView = (ListView) findViewById(R.id.ProductListView);
         theListView.setAdapter(theAdapter);
-         Toast.makeText(getBaseContext(), category.getCategoryName(), Toast.LENGTH_LONG).show();
+        Toast.makeText(getBaseContext(), category.getCategoryName(), Toast.LENGTH_LONG).show();
     }
 
 

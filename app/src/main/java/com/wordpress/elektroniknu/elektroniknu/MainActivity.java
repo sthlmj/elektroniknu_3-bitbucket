@@ -19,6 +19,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import java.io.IOException;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -68,10 +69,17 @@ public class MainActivity extends ActionBarActivity {
         TextView titleTextView = (TextView) findViewById(R.id.titleTextView);
         titleTextView.setText("Butiker");
 
-        //sibaHtmlParser sibaParser = new sibaHtmlParser();
-        HtmlParserElgigantenIn elgigantenParser = new HtmlParserElgigantenIn();
-        //new getProductsfromserver().execute((HtmlParser) sibaParser);
-        new getProductsfromserver().execute((HtmlParser) elgigantenParser);
+        sibaHtmlParser sibaParser = new sibaHtmlParser();
+        elgigantenHtmlParser elgigantenParser = new elgigantenHtmlParser();
+        new getProductsfromserver().execute((HtmlParser) sibaParser);
+        try {
+            catalog.sortProducts(new getProductsfromserver().execute((HtmlParser) elgigantenParser).get());
+            catalog.sortProducts(new getProductsfromserver().execute((HtmlParser) sibaParser).get());
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
 
         theListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -204,7 +212,7 @@ public class MainActivity extends ActionBarActivity {
 
         @Override
         protected void onPostExecute(Product[] products) {
-            catalog.sortProducts(products);
+            //catalog.sortProducts(products);
             Toast.makeText(getBaseContext(), "Klar", Toast.LENGTH_LONG).show();
         }
     }

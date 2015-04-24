@@ -23,6 +23,11 @@ public class elgigantenHtmlParser implements HtmlParser {
     public List<Product> getProducts(){
         return products;
     }
+
+    public Product[] getProductArray(){
+        return products.toArray(new Product[products.size()]);
+    }
+
     //START FETCHING HTML OF SITE
     public void startParser(){
         String[] listofCategories = getCategoryList();                                              //get list of Elgiganten's categories
@@ -90,6 +95,7 @@ public class elgigantenHtmlParser implements HtmlParser {
             for (Element e : links) {
                 Products[i].setUrl(e.attr("abs:href"));
                 Products[i].setProductName(e.attr("title"));
+                Products[i].setStoreName("Elgiganten");
                 i++;
             }
             //get price of products

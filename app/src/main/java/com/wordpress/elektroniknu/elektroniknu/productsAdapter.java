@@ -26,7 +26,7 @@ class productsAdapter extends ArrayAdapter<Product>{
         View productView = myInflater.inflate(R.layout.product_row, parent, false);
 
         Product product = getItem(position);
-        ImageView productImageView = (ImageView) productView.findViewById(R.id.produktImageView);
+        //ImageView productImageView = (ImageView) productView.findViewById(R.id.produktImageView);
         TextView productNameTextView = (TextView) productView.findViewById(R.id.produktNameTextView);
         TextView storeTextView = (TextView) productView.findViewById(R.id.storeTextView);
         TextView priceTextView = (TextView) productView.findViewById(R.id.priceTextView);
@@ -35,13 +35,22 @@ class productsAdapter extends ArrayAdapter<Product>{
         TextView description3TextView = (TextView) productView.findViewById(R.id.description3TextView);
 
 
-        new DownloadImageTask(productImageView).execute(product.getProductImageUrl());
+        //new DownloadImageTask(productImageView).execute(product.getProductImageUrl());
         productNameTextView.setText(product.getProductName());
         storeTextView.setText(product.getStoreName());
         priceTextView.setText(product.getProductPrice());
-        description1TextView.setText(product.getProductDescription()[0]);
-        description2TextView.setText(product.getProductDescription()[1]);
-        description3TextView.setText(product.getProductDescription()[2]);
+        try {
+            description1TextView.setText(product.getProductDescription()[0]);
+            try{
+                description2TextView.setText(product.getProductDescription()[1]);
+                try{
+                    description3TextView.setText(product.getProductDescription()[2]);
+                }catch (NullPointerException e){}
+            }catch(NullPointerException e){
+            }
+        }catch(NullPointerException e){
+            description1TextView.setText("Ingen beskrivning");
+        }
 
         return productView;
     }
