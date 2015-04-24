@@ -18,7 +18,6 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 import java.io.IOException;
-import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 
@@ -57,7 +56,6 @@ public class MainActivity extends ActionBarActivity {
         }
         // ListAdapter too be able to adapt our array in too
         // something that our listview is able to work with
-        //new getProductsfromserver().execute((htmlParser)new sibaHtmlParser());
 
         ListAdapter theAdapter = new storesAdapter(this,electronicSupplier);
         ListView theListView = (ListView) findViewById(R.id.theListView);
@@ -71,7 +69,6 @@ public class MainActivity extends ActionBarActivity {
 
         sibaHtmlParser sibaParser = new sibaHtmlParser();
         elgigantenHtmlParser elgigantenParser = new elgigantenHtmlParser();
-        new getProductsfromserver().execute((HtmlParser) sibaParser);
         try {
             catalog.sortProducts(new getProductsfromserver().execute((HtmlParser) elgigantenParser).get());
             catalog.sortProducts(new getProductsfromserver().execute((HtmlParser) sibaParser).get());
@@ -212,7 +209,6 @@ public class MainActivity extends ActionBarActivity {
 
         @Override
         protected void onPostExecute(Product[] products) {
-            //catalog.sortProducts(products);
             Toast.makeText(getBaseContext(), "Klar", Toast.LENGTH_LONG).show();
         }
     }

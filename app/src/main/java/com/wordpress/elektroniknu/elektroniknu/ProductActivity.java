@@ -1,6 +1,7 @@
 package com.wordpress.elektroniknu.elektroniknu;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -20,13 +21,25 @@ public class ProductActivity extends ActionBarActivity {
         Intent intent = this.getIntent();
         Category category = (Category) intent.getSerializableExtra("Category");
 
-        ListAdapter theAdapter = new productsAdapter(this, category.getProductArray());
-        ListView theListView = (ListView) findViewById(R.id.ProductListView);
-        theListView.setAdapter(theAdapter);
-        Toast.makeText(getBaseContext(), category.getCategoryName(), Toast.LENGTH_LONG).show();
+        new setAdapter().execute(category);
     }
 
 
+    public class setAdapter extends AsyncTask<Category, Void, String> {
+
+        @Override
+        protected String doInBackground(Category... category) {
+            ListAdapter theAdapter = new productsAdapter(ProductActivity.this, category[0].getProductArray());
+            ListView theListView = (ListView) findViewById(R.id.ProductListView);
+            theListView.setAdapter(theAdapter);
+            return(category[0].getCategoryName());
+        }
+
+        @Override
+        protected void onPostExecute(String string) {
+            Toast.makeText(getBaseContext(), string, Toast.LENGTH_LONG).show();
+        }
+    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
