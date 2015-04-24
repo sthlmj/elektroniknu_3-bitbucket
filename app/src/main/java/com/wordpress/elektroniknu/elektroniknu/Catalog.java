@@ -4,53 +4,13 @@ import java.io.Serializable;
 import java.util.List;
 
 public class Catalog implements Serializable{
-    //START CATALOG ACTIVITY WITH A MAIN CLASS
-    public static void main(String[] args){
-        Catalog catalog = new Catalog();                    //create Object Catalog
-        long startTime = System.currentTimeMillis();        //start time-stamp
-        //sibaHtmlParser sibaparser = new sibaHtmlParser();   //create Object sibaHtmlParser
-        //sibaparser.startParser();                           //start Siba's parser
-        elgigantenHtmlParser elgigantenparser = new elgigantenHtmlParser(); //create Object elgigantenHtmlParser
-        elgigantenparser.startParser();                     //start Elgiganten's parser
-        long endTime = System.currentTimeMillis();          //end time-stamp
-        System.out.println("That took " + (endTime - startTime) + " milliseconds");
-
-        //Product[] productArray = sibaparser.getProductArray();        //get productList of Siba
-        //catalog.sortProducts(productArray);                           //sort Siba's products in categories
-        List<Product> productList = elgigantenparser.getProducts();   //get productList of Elgiganten
-        catalog.sortProducts(productList.toArray(new Product[productList.size()])); //sort Elgiganten's products in categories
-
-        //print categories with containing products
-
-        /*for (Category c: catalog.getCategories()){
-            System.out.println(c.getCategoryName());
-            for (Product p: c.getProductList()){
-                System.out.println(p.getProductName());
-            }
-            System.out.println("\n ");
-        }*/
-        for(Product p: catalog.getCategories(2).getProductArray()){
-            System.out.println(p.getProductName());
-        }
-
-    }
-
     //PROPERTIES OF OUR CATALOG
     private Category[] categories;
 
     //CATALOG CONSTRUCTOR - defines every category name in a catalog, needs no input
     public Catalog() {
-        /*sibaHtmlParser sibaparser = new sibaHtmlParser();   //create Object sibaHtmlParser
-        sibaparser.startParser();                           //start Siba's parser
-        HtmlParserElgigantenIn elgigantenparser = new HtmlParserElgigantenIn(); //create Object elgigantenHtmlParser
-        elgigantenparser.startParser();                     //start Elgiganten's parser
-        Product[] productArray = sibaparser.getProductArray();        //get productList of Siba
-        catalog.sortProducts(productArray);                           //sort Siba's products in categories
-        List<Product> productList = elgigantenparser.getProducts();   //get productList of Elgiganten
-        catalog.sortProducts(productList.toArray(new Product[productList.size()])); //sort Elgiganten's products in categories
-        */
-
-        categories = new Category[10];                         //Catalog contains 10 categories
+        //Catalog contains 10 categories
+        categories = new Category[10];
 
         //Creates 1 Category Object for every index in Catalog
         for(int i = 0; i < categories.length; i++){
@@ -99,6 +59,7 @@ public class Catalog implements Serializable{
     public void addToCatalog(Product[] products){
         sortProducts(products);
     }
+
     //Sorts products into categories
     public void sortProducts(Product[] products){
         String name;

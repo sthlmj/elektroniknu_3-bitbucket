@@ -18,18 +18,19 @@ public class ProductActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product);
 
-        Intent intent = this.getIntent();
-        Category category = (Category) intent.getSerializableExtra("Category");
+        Intent intent = this.getIntent();           //Create new Intent for receiving category
+        Category category = (Category) intent.getSerializableExtra("Category");     //receive category
 
-        new setAdapter().execute(category);
+        new setAdapter().execute(category);         //execute new Thread for the ListView in Category
     }
 
 
+    //DEFINE THE THREAD
     public class setAdapter extends AsyncTask<Category, Void, String> {
 
         @Override
         protected String doInBackground(Category... category) {
-            ListAdapter theAdapter = new productsAdapter(ProductActivity.this, category[0].getProductArray());
+            ListAdapter theAdapter = new productsAdapter(ProductActivity.this, category[0].getProductArray());  //Get all products in Category
             ListView theListView = (ListView) findViewById(R.id.ProductListView);
             theListView.setAdapter(theAdapter);
             return(category[0].getCategoryName());
@@ -37,6 +38,7 @@ public class ProductActivity extends ActionBarActivity {
 
         @Override
         protected void onPostExecute(String string) {
+            //Toast when thread is executed
             Toast.makeText(getBaseContext(), string, Toast.LENGTH_LONG).show();
         }
     }
