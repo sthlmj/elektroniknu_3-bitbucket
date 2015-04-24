@@ -5,9 +5,12 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -26,7 +29,7 @@ class productsAdapter extends ArrayAdapter<Product>{
         View productView = myInflater.inflate(R.layout.product_row, parent, false);
 
         Product product = getItem(position);
-        //ImageView productImageView = (ImageView) productView.findViewById(R.id.produktImageView);
+        WebView productImageView = (WebView) productView.findViewById(R.id.produktWebView);
         TextView productNameTextView = (TextView) productView.findViewById(R.id.produktNameTextView);
         TextView storeTextView = (TextView) productView.findViewById(R.id.storeTextView);
         TextView priceTextView = (TextView) productView.findViewById(R.id.priceTextView);
@@ -35,7 +38,8 @@ class productsAdapter extends ArrayAdapter<Product>{
         TextView description3TextView = (TextView) productView.findViewById(R.id.description3TextView);
 
 
-        //new DownloadImageTask(productImageView).execute(product.getProductImageUrl());
+        String html = "<html><body><img src=\"" + product.getProductImageUrl() + "\" width=\"100%\" height=\"100%\"\"/></body></html>";
+        productImageView.loadData(html, "text/html", null);
         productNameTextView.setText(product.getProductName());
         storeTextView.setText(product.getStoreName());
         priceTextView.setText(product.getProductPrice());
@@ -55,7 +59,7 @@ class productsAdapter extends ArrayAdapter<Product>{
         return productView;
     }
 
-    private class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
+    /*private class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
         ImageView bmImage;
 
         public DownloadImageTask(ImageView bmImage) {
@@ -78,6 +82,6 @@ class productsAdapter extends ArrayAdapter<Product>{
         protected void onPostExecute(Bitmap result) {
             bmImage.setImageBitmap(result);
         }
-    }
+    }*/
 
 }

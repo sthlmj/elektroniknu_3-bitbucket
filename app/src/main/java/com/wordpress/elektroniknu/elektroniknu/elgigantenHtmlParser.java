@@ -125,10 +125,6 @@ public class elgigantenHtmlParser implements HtmlParser {
                 Products[ulnumber].setProductDescription(descriptionForOne);
             }
 
-            //get categoryNames
-                /*Elements categoryNames = Doc.select("ol.breadcrumbs.S-1-1 li");
-                String Name = categoryNames.get(1).text().replace("Veckans erbjudanden ","");*/
-
             Element categoryNames = Doc.select("title").first();
             String Name = categoryNames.text().replace("Veckans erbjudanden ", "");
 
