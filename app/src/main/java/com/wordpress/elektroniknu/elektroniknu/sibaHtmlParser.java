@@ -7,6 +7,8 @@ import org.jsoup.nodes.Element;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -20,11 +22,11 @@ public class sibaHtmlParser implements HtmlParser {
     //CONSTRUCTOR OF PARSER
     public sibaHtmlParser() {}
 
-    //GET PRODUCTS FROM LIST OF SIBA
+    //GET PRODUCTS WITH LIST FROM SIBA
     public List<Product> getProducts(){
         return sibaProductList;
     }
-    //GET PRODUCTS FROM ARRAY OF SIBA
+    //GET PRODUCTS WITH ARRAY FROM SIBA
     public Product[] getProductArray(){
         return sibaProductArray;
     }
@@ -89,8 +91,43 @@ public class sibaHtmlParser implements HtmlParser {
                 }
             }
 
-            setSibaProductsCategoryName.setProductsCategoryName(sibaProductArray);
+            setProductsCategoryName(sibaProductArray);
             sibaProductList = Arrays.asList(sibaProductArray);
+        }
+    }
+
+
+    //SET CATEGORY NAME FOR ALL PRODUCTS
+    public static void setProductsCategoryName(Product[] productList) {
+        ExecutorService executor = Executors.newFixedThreadPool(8);
+        for (Product p : productList) {
+            MyRunnable newThread = new MyRunnable(p);
+            executor.execute(newThread);
+        }
+        executor.shutdown();
+        while(!executor.isTerminated());
+
+    }
+    public static class MyRunnable implements Runnable{                         //multithreads for faster result
+        private final Product p;
+
+        MyRunnable(Product p){
+            this.p = p;
+        }
+        public void run() {
+            Document doc = null;   //get productName
+            try {
+                doc = Jsoup.connect("http://www.siba.se/searchresults?query=" + p.getProductName().replace(" ", "+").replace("&", "%26")).get();
+                Element e = doc.select("div.links li").first();                             //get products first category
+
+                try {
+                    p.setCategoryName(e.text());
+                } catch (NullPointerException exception) {
+                    p.setCategoryName("Annat");
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 }
