@@ -22,7 +22,7 @@
             android:id="@+id/productNameTextView"
             android:layout_toLeftOf="@id/goToImageView"
             android:textSize="25dp"
-            android:gravity="center" />
+            android:gravity="center_vertical" />
 
 
     </RelativeLayout>

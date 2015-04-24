@@ -219,7 +219,7 @@ public class MainActivity extends ActionBarActivity {
         @Override
         //SHOW A TOAST WHEN PARSING IS DONE
         protected void onPostExecute(Product[] products) {
-            Toast.makeText(getBaseContext(), "Klar", Toast.LENGTH_LONG).show();
+//            Toast.makeText(getBaseContext(), "Klar", Toast.LENGTH_LONG).show();
         }
     }
 
@@ -247,20 +247,12 @@ public class MainActivity extends ActionBarActivity {
         //  return true;
         //}
         switch (item.getItemId()) {
-            case R.id.action_update:
-                Toast toast = Toast.makeText(getBaseContext(), "Version: 0.2-alpha", Toast.LENGTH_LONG);
-                toast.setGravity(Gravity.TOP|Gravity.RIGHT, 5, 10);
-                toast.show();
-                return true;
-            case R.id.action_city:
-                openCity();
-                return true;
+
+
             case R.id.action_about:
                 openAbout();
                 return true;
-            case R.id.action_settings:
-                openSettings();
-                return true;
+
         }
         return super.onOptionsItemSelected(item);
     }
@@ -270,9 +262,7 @@ public class MainActivity extends ActionBarActivity {
      * Main activity bar list actions.
      */
 
-    //open city
-    private void openCity() {
-    }
+
 
     //open About
     private void openAbout() {
@@ -287,7 +277,5 @@ public class MainActivity extends ActionBarActivity {
         }).show();
     }
 
-    //open settings
-    private void openSettings() {
-    }
+
 }
