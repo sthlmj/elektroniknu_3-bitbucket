@@ -40,7 +40,8 @@
         android:layout_toStartOf="@+id/titleTextView"
         android:layout_above="@id/theListView"
         android:src="@drawable/ic_action_previos_item"
-        android:onClick="onPreviosImageButtonClick" />
+        android:onClick="onPreviosImageButtonClick"
+        android:background="#00000000" />
 
     <ImageButton
         android:layout_width="fill_parent"
@@ -51,5 +52,6 @@
         android:layout_alignTop="@+id/titleTextView"
         android:src="@drawable/ic_action_next_item"
         android:focusableInTouchMode="false"
-        android:onClick="onNextImageButtonClick" />
+        android:onClick="onNextImageButtonClick"
+        android:background="#00000000" />
 </RelativeLayout>
