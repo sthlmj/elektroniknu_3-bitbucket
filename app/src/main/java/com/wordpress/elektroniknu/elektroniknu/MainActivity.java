@@ -172,6 +172,8 @@ public class MainActivity extends ActionBarActivity {
                 categoriesName[i] = c.getCategoryName();
                 i++;
             }
+
+            //if
             ListAdapter theAdapter = new storesAdapter(this,categoriesName);
             ListView theListView = (ListView) findViewById(R.id.theListView);
 

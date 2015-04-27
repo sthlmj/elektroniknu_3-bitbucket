@@ -40,7 +40,8 @@
             android:id="@+id/priceTextView"
             android:layout_gravity="right"
             android:layout_alignParentEnd="true"
-            android:textSize="30dp" />
+            android:textSize="30dp"
+            android:background="@drawable/cumstomshape"/>
 
     </RelativeLayout>
 
