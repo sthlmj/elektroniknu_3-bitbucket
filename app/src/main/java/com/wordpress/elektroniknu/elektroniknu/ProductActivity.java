@@ -42,12 +42,12 @@ public class ProductActivity extends ActionBarActivity {
             Toast.makeText(getBaseContext(), string, Toast.LENGTH_LONG).show();
         }
     }
-    @Override
+  /*  @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_product, menu);
         return true;
-    }
+    }*/
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
