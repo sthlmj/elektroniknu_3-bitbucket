@@ -28,7 +28,7 @@ public class storesAdapter extends ArrayAdapter<String>{
         //ADAPTS THE PROPERTIES ON WHOLE PRODUCT ROW
         productNameTextView.setText(name);
         goToImageView.setImageResource(R.drawable.ic_action_next_item);
-        storeView.setBackgroundResource(R.drawable.cumstomshape);
+        //storeView.setBackgroundResource(R.drawable.cumstomshape);
 
         return storeView;
     }
