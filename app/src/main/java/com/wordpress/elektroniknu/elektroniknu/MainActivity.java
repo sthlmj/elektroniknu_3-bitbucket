@@ -7,6 +7,9 @@ import android.os.AsyncTask;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.text.SpannableString;
+import android.text.method.LinkMovementMethod;
+import android.text.util.Linkify;
 import android.view.Menu;
 import android.view.Gravity;
 import android.view.MenuInflater;
@@ -268,10 +271,34 @@ public class MainActivity extends ActionBarActivity {
      * Main activity bar list actions.
      */
 
+    // actionbar "Om oss" with link to our homepage
+    private void openAbout()
+    {
+
+        final SpannableString stMyWeb = new SpannableString("https://elektroniknu.wordpress.com/");
+        Linkify.addLinks(stMyWeb, Linkify.ALL);
+
+        final AlertDialog aboutDialog = new AlertDialog.Builder(MainActivity.this)
+                .setTitle("Om oss")
+                .setMessage(stMyWeb)
+                .setNeutralButton("OK", new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // TODO Auto-generated method stub
+                    }})
+                .create();
+
+        aboutDialog.show();
+
+        ((TextView)aboutDialog.findViewById(android.R.id.message))
+                .setMovementMethod(LinkMovementMethod.getInstance());
+
+    }
 
 
     //open About
-    private void openAbout() {
+   /* private void openAbout() {
         new AlertDialog.Builder(this)
         .setTitle("Om oss")
         .setMessage("elektroniknu.wordpress.com")
@@ -281,7 +308,7 @@ public class MainActivity extends ActionBarActivity {
 
             }
         }).show();
-    }
+    }*/
 
 
 }
