@@ -18,6 +18,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 import java.io.IOException;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 
@@ -116,15 +118,16 @@ public class MainActivity extends ActionBarActivity {
         //if title is "Butiker", open corresponding listView
         if(titleTextView.getText().equals("Butiker")){
             Category[] categories = catalog.getCategories();
-            String[] categoriesName = new String[categories.length];
-            int i = 0;
+            List<String> theNewCatNames = new LinkedList<String>();
             for(Category c: categories){
-                categoriesName[i] = c.getCategoryName();
-                i++;
+                if(c.getProductList().size() != 0)
+                {
+                    theNewCatNames.add(c.getCategoryName());
+                }
             }
 
             //Use Adapter to define the design of the listView
-            ListAdapter theAdapter = new storesAdapter(this,categoriesName);
+            ListAdapter theAdapter = new storesAdapter(this,theNewCatNames.toArray(new String[theNewCatNames.size()]));
             ListView theListView = (ListView) findViewById(R.id.theListView);
             theListView.setAdapter(theAdapter);
 
@@ -166,15 +169,16 @@ public class MainActivity extends ActionBarActivity {
         TextView titleTextView = (TextView) findViewById(R.id.titleTextView);
         if(titleTextView.getText().equals("Butiker")){
             Category[] categories = catalog.getCategories();
-            String[] categoriesName = new String[categories.length];
-            int i = 0;
+            List<String> theNewCatNames = new LinkedList<String>();
             for(Category c: categories){
-                categoriesName[i] = c.getCategoryName();
-                i++;
+                if(c.getProductList().size() != 0)
+                {
+                    theNewCatNames.add(c.getCategoryName());
+                }
             }
 
-            //if
-            ListAdapter theAdapter = new storesAdapter(this,categoriesName);
+            //Use Adapter to define the design of the listView
+            ListAdapter theAdapter = new storesAdapter(this,theNewCatNames.toArray(new String[theNewCatNames.size()]));
             ListView theListView = (ListView) findViewById(R.id.theListView);
 
             theListView.setAdapter(theAdapter);
