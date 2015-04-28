@@ -19,9 +19,10 @@
         android:text="ProduktNamn"
         android:id="@+id/produktNameTextView"
         android:paddingStart="16dp"
-        android:textSize="19dp"
-        android:layout_marginTop="10dp"
-        android:textIsSelectable="false" />
+        android:textSize="25dp"
+        android:layout_marginTop="20dp"
+        android:textIsSelectable="false"
+        android:textStyle="bold" />
 
     <RelativeLayout
         android:orientation="horizontal"
@@ -37,8 +38,8 @@
             android:id="@+id/storeTextView"
             android:paddingStart="16dp"
             android:textIsSelectable="false"
-            android:textSize="28dp"
-            android:textStyle="bold" />
+            android:textSize="20dp"
+            android:layout_marginTop="5dp" />
 
         <Button
             android:layout_width="80dp"
@@ -47,7 +48,7 @@
             android:textColor="@color/white"
             android:id="@+id/pricebotton"
             android:background="@drawable/shapeforbotton"
-            android:layout_marginEnd="52dp"
+            android:layout_marginEnd="30dp"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true" />
 
@@ -85,6 +86,7 @@
         android:password="false"
         android:textColor="@color/darkgrey"
         android:textSize="16dp"
-        android:textIsSelectable="true" />
+        android:textIsSelectable="true"
+        android:layout_marginBottom="20dp" />
 
 </LinearLayout>
