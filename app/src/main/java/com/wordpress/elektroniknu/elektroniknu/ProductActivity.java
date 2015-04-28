@@ -23,7 +23,10 @@ public class ProductActivity extends ActionBarActivity {
         Category category = (Category) intent.getSerializableExtra("Category");     //receive category
 
         new setAdapter().execute(category);         //execute new Thread for the ListView in Category
-
+        if(category.getProductList().size() == 0)
+        {
+            Toast.makeText(getBaseContext(), "ingen erbjudande", Toast.LENGTH_LONG).show();
+        }
 
     }
 

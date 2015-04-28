@@ -122,10 +122,7 @@ public class MainActivity extends ActionBarActivity {
             Category[] categories = catalog.getCategories();
             List<String> theNewCatNames = new LinkedList<String>();
             for(Category c: categories){
-                if(c.getProductList().size() != 0)
-                {
                     theNewCatNames.add(c.getCategoryName());
-                }
             }
 
             //Use Adapter to define the design of the listView
@@ -173,10 +170,7 @@ public class MainActivity extends ActionBarActivity {
             Category[] categories = catalog.getCategories();
             List<String> theNewCatNames = new LinkedList<String>();
             for(Category c: categories){
-                if(c.getProductList().size() != 0)
-                {
                     theNewCatNames.add(c.getCategoryName());
-                }
             }
 
             //Use Adapter to define the design of the listView
