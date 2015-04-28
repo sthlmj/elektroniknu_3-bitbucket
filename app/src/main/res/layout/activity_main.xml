@@ -34,8 +34,6 @@
         android:choiceMode="singleChoice"
         android:drawSelectorOnTop="true"
         android:background="@drawable/list_selector">
-        android:layout_below="@id/titleTextView"
-        >
     </ListView>
 
     <ImageButton
