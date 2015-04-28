@@ -7,7 +7,7 @@
     android:background="@color/white">
 
     <WebView
-        android:layout_width="250dp"
+        android:layout_width="328dp"
         android:layout_height="300dp"
         android:id="@+id/produktWebView"
         android:layout_gravity="center_horizontal" />
@@ -17,7 +17,9 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="ProduktNamn"
-        android:id="@+id/produktNameTextView" />
+        android:id="@+id/produktNameTextView"
+        android:paddingStart="16dp"
+        android:textSize="20dp" />
 
     <RelativeLayout
         android:orientation="horizontal"
@@ -30,40 +32,57 @@
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="Butik"
             android:layout_gravity="left"
-            android:id="@+id/storeTextView" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Pris"
-            android:id="@+id/priceTextView"
-            android:layout_gravity="right"
-            android:layout_alignParentEnd="true"
+            android:id="@+id/storeTextView"
+            android:paddingStart="16dp"
+            android:textIsSelectable="false"
             android:textSize="30dp"
-            android:background="@drawable/cumstomshape"/>
+            android:textStyle="bold" />
 
-    </RelativeLayout>
+        <Button
+            android:layout_width="60dp"
+            android:layout_height="35dp"
+            android:text="Pris"
+            android:textColor="@color/white"
+            android:id="@+id/pricebotton"
+            android:background="@drawable/shapeforbotton"
+            android:layout_marginEnd="52dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true" />
+
+ </RelativeLayout>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Beskrivning 1"
-        android:id="@+id/description1TextView" />
+        android:id="@+id/description1TextView"
+        android:paddingStart="16dp"
+        android:password="false"
+        android:singleLine="false"
+        android:textColor="@color/darkgrey"
+        android:textSize="16dp" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Beskrivning 2"
-        android:id="@+id/description2TextView" />
+        android:id="@+id/description2TextView"
+        android:paddingStart="16dp"
+        android:textColor="@color/darkgrey"
+        android:textSize="16dp" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Beskrivning 3"
-        android:id="@+id/description3TextView" />
+        android:id="@+id/description3TextView"
+        android:paddingStart="16dp"
+        android:password="false"
+        android:textColor="@color/darkgrey"
+        android:textSize="16dp"
+        android:textIsSelectable="true" />
 
 </LinearLayout>

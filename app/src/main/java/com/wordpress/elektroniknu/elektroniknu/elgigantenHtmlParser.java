@@ -119,7 +119,7 @@ public class elgigantenHtmlParser implements HtmlParser {
                 String[] descriptionForOne = new String[3];
                 int j = 0;
                 for (Element li : lis) {
-                    descriptionForOne[j] = li.text();
+                    descriptionForOne[j] = "\u2022" +"  " + li.text();
                     j++;
                 }
                 Products[ulnumber].setProductDescription(descriptionForOne);

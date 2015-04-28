@@ -80,7 +80,7 @@ public class sibaHtmlParser implements HtmlParser {
             int number = 0;
             String[] description = new String[3];
             for (Element e : links) {
-                description[number] = e.text();
+                description[number] = "\u2022" +"  " + e.text();
                 if (number == 2) {
                     number = 0;
                     sibaProductArray[i].setProductDescription(description);
