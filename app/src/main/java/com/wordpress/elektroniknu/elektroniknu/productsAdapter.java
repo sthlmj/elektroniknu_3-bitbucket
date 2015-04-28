@@ -42,7 +42,8 @@ class productsAdapter extends ArrayAdapter<Product>{
         productImageView.loadData(html, "text/html", null);
         productNameTextView.setText(product.getProductName());
         storeTextView.setText(product.getStoreName());
-        priceButton.setText(product.getProductPrice());
+        String price = product.getProductPrice();
+        priceButton.setText(price);
         try {
             description1TextView.setText(product.getProductDescription()[0]);
             try{
@@ -53,7 +54,9 @@ class productsAdapter extends ArrayAdapter<Product>{
             }catch(NullPointerException e){
             }
         }catch(NullPointerException e){
-            description1TextView.setText("Ingen beskrivning");
+            description1TextView.setText(" ");
+            description2TextView.setText(" ");
+            description3TextView.setText(" ");
         }
 
         priceButton.setOnClickListener(new View.OnClickListener() {

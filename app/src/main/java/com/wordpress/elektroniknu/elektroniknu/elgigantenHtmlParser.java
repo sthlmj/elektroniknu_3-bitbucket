@@ -102,7 +102,7 @@ public class elgigantenHtmlParser implements HtmlParser {
             links = Doc.select("div.col.col-mini-product.fixed div.mini-product div.mini-left-content div.product-price-button span.add-to-basket.normal span");
             i = 0;
             for (Element e : links) {
-                Products[i].setProductPrice(e.ownText());
+                Products[i].setProductPrice(e.ownText()+ "\u003A" + "\u002D");
                 i++;
             }
             //get url of images
