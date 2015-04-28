@@ -64,7 +64,7 @@ public class sibaHtmlParser implements HtmlParser {
             links = Doc.select("div.product-box-price");                                            //PRICE
             i = 0;
             for (Element e : links) {
-                sibaProductArray[i].setProductPrice(e.ownText().replace(" ", ""));
+                sibaProductArray[i].setProductPrice(e.ownText().replace(" ", "") + "\u003A" + "\u002D");
                 i++;
             }
             links = Doc.select("img.js-responsive-image");                                          //IMAGE URL
