@@ -6,10 +6,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 
-/**
- * Created by LERA on 28-Apr-15.
- */
-
 // highlights buttons onClick
 public class ButtonHighlighter implements View.OnTouchListener {
 
