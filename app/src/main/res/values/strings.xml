@@ -9,5 +9,4 @@
     <string name="action_favorite">Favorite</string>
     <string name="title_activity_store_pdf">StorePdfActivity</string>
     <string name="title_activity_product">ProductsList</string>
-    <string name="title_activity_one_product">oneProductActivity</string>
 </resources>
