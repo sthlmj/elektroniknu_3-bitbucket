@@ -27,7 +27,7 @@ class productsAdapter extends ArrayAdapter<Product>{
         WebView productImageView = (WebView) productView.findViewById(R.id.produktWebView);
         TextView productNameTextView = (TextView) productView.findViewById(R.id.produktNameTextView);
         TextView storeTextView = (TextView) productView.findViewById(R.id.storeTextView);
-        TextView priceTextView = (TextView) productView.findViewById(R.id.priceTextView);
+        TextView priceTextView = (TextView) productView.findViewById(R.id.pricebotton);
         TextView description1TextView = (TextView) productView.findViewById(R.id.description1TextView);
         TextView description2TextView = (TextView) productView.findViewById(R.id.description2TextView);
         TextView description3TextView = (TextView) productView.findViewById(R.id.description3TextView);
