@@ -29,10 +29,7 @@
             android:label="@string/title_activity_product"
             android:theme="@style/CustomTheme" >
         </activity>
-        <activity
-            android:name=".oneProductActivity"
-            android:label="@string/title_activity_one_product" >
-        </activity>
+
     </application>
 
 </manifest>
