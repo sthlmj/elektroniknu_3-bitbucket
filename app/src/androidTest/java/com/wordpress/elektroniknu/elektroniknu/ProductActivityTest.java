@@ -53,7 +53,7 @@ public class ProductActivityTest extends ActivityInstrumentationTestCase2<Produc
         assertNotNull(activity);
     }
 
-    public void testListViewIsEmpty(){
+    public void testListViewIsNotEmpty(){
         ListView listView = (ListView) activity.findViewById(R.id.ProductListView);
         assertNotNull(listView);
     }

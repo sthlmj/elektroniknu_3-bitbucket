@@ -35,7 +35,7 @@ public class MainActivityTest extends
         assertEquals("Incorrect label of the button", "Butiker", textView.getText());
     }
 
-    public void testListViewOFButikerIsNotNull() {
+    public void testListViewOfButikerIsNotNull() {
         ListView listView = (ListView) activity.findViewById(R.id.theListView);
         assertNotNull(listView);
     }
