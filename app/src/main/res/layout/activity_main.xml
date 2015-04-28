@@ -30,7 +30,10 @@
         android:divider="#F1DDCB"
         android:dividerHeight="10sp"
         android:layout_marginTop="20dp"
-        android:layout_below="@id/titleTextView">
+        android:layout_below="@id/titleTextView"
+        android:choiceMode="singleChoice"
+        android:drawSelectorOnTop="true"
+        android:background="@drawable/list_selector">
     </ListView>
 
     <ImageButton

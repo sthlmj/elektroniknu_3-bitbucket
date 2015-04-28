@@ -15,6 +15,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ImageButton;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -35,6 +36,11 @@ public class MainActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         // Set the first screen the user should view
         setContentView(R.layout.activity_main);
+        // touch feedback 
+        ImageButton back =(ImageButton)findViewById(R.id.previosImageButton);
+        ImageButton next =(ImageButton)findViewById(R.id.nextImageButton);
+        back.setOnTouchListener(new ButtonHighlighter(back));
+        next.setOnTouchListener(new ButtonHighlighter(next));
 
         // Data that I want too put in my ListView
         // Array of Strings
