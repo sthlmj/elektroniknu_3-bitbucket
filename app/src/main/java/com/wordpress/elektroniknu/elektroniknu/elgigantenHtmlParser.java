@@ -28,6 +28,10 @@ public class elgigantenHtmlParser implements HtmlParser {
         return products.toArray(new Product[products.size()]);
     }
 
+    public String getParserName(){
+        return"Elgiganten";
+    }
+
     //START FETCHING HTML OF SITE
     public void startParser(){
         String[] listofCategories = getCategoryList();                                              //get list of Elgiganten's categories

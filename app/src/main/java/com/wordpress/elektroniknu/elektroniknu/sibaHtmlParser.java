@@ -31,6 +31,10 @@ public class sibaHtmlParser implements HtmlParser {
         return sibaProductArray;
     }
 
+    public String getParserName(){
+        return"Siba";
+    }
+
     //STARTS FETCHING HTML OF SITE
     public void startParser(){
         Document Doc = null;

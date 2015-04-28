@@ -19,23 +19,25 @@ import android.widget.ImageButton;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.concurrent.ExecutionException;
 
 
 public class MainActivity extends ActionBarActivity {
 
     //CREATE NEW CATALOG
-     Catalog catalog = new Catalog();
+     Catalog catalog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         // Set the first screen the user should view
         setContentView(R.layout.activity_main);
+
+        Intent intent = this.getIntent();
+        catalog = (Catalog) intent.getSerializableExtra("Catalog");
+
         // touch feedback 
         ImageButton back =(ImageButton)findViewById(R.id.previosImageButton);
         ImageButton next =(ImageButton)findViewById(R.id.nextImageButton);
@@ -76,18 +78,6 @@ public class MainActivity extends ActionBarActivity {
         // Set Title ("Produkter"/"Butiker"/"Kategori")
         TextView titleTextView = (TextView) findViewById(R.id.titleTextView);
         titleTextView.setText("Butiker");
-
-        // Create Parser Object of stores
-        sibaHtmlParser sibaParser = new sibaHtmlParser();
-        elgigantenHtmlParser elgigantenParser = new elgigantenHtmlParser();
-        try {
-            catalog.sortProducts(new getProductsfromserver().execute((HtmlParser) elgigantenParser).get()); //start new Thread which will parse and put in catalog
-            catalog.sortProducts(new getProductsfromserver().execute((HtmlParser) sibaParser).get());       //start new Thread which will parse and put in catalog
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        }
 
         //ONCLICK LISTS ON OUR LISTVIEW
         theListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
