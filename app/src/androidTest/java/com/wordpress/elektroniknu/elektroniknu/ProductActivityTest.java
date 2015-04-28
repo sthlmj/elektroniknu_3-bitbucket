@@ -45,6 +45,7 @@ public class ProductActivityTest extends ActivityInstrumentationTestCase2<Produc
                 MainActivity.class);
         intent.putExtra("Category", (java.io.Serializable) category);
         setActivityIntent(intent);
+        setActivityInitialTouchMode(false);
         activity = getActivity();
     }
 
@@ -66,22 +67,5 @@ public class ProductActivityTest extends ActivityInstrumentationTestCase2<Produc
         ListView listView = (ListView) activity.findViewById(R.id.ProductListView);
         View firstItem = listView.getChildAt(0);
         assertNotNull(firstItem);
-    }
-
-    public void testPerfomItemClick() {
-        ListView listView = (ListView) activity.findViewById(R.id.ProductListView);
-        View firstItem = listView.getChildAt(0);
-        Button button = (Button)firstItem.findViewById(R.id.pricebotton);
-
-        Instrumentation.ActivityMonitor monitor = getInstrumentation().addMonitor(
-                ProductActivity.class.getName(), null, false
-        );
-
-        TouchUtils.clickView(this, button);
-        Activity contactDetailActivity =
-                (Activity)monitor.waitForActivityWithTimeout(1000);
-        assertNotNull(contactDetailActivity);
-        assertTrue(getInstrumentation().checkMonitorHit(monitor, 1));
-        contactDetailActivity.finish();
     }
 }
