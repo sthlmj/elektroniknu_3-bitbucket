@@ -1,23 +1,22 @@
 package com.wordpress.elektroniknu.elektroniknu;
 
+import android.app.Activity;
+import android.app.Instrumentation;
 import android.content.Intent;
 import android.test.ActivityInstrumentationTestCase2;
-import android.test.ActivityUnitTestCase;
-import android.view.ContextThemeWrapper;
+import android.test.TouchUtils;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ListView;
 
 /**
  * Created by chenz_000 on 2015-04-27.
  */
-public class ProductActivityTest extends ActivityUnitTestCase<ProductActivity> {
+public class ProductActivityTest extends ActivityInstrumentationTestCase2<ProductActivity> {
 
     private ProductActivity activity;
-    private ListView listView;
-    private View child;
     private Category category;
     private Product product;
-    private Intent intent;
 
     public ProductActivityTest() {
         super(ProductActivity.class);
@@ -25,9 +24,6 @@ public class ProductActivityTest extends ActivityUnitTestCase<ProductActivity> {
 
     protected void setUp() throws Exception{
         super.setUp();
-
-        ContextThemeWrapper context = new ContextThemeWrapper(getInstrumentation().getTargetContext(), R.style.AppTheme);
-        setActivityContext(context);
 
         product = new Product();
         product.setStoreName("Elgiganten");
@@ -48,33 +44,44 @@ public class ProductActivityTest extends ActivityUnitTestCase<ProductActivity> {
         Intent intent = new Intent(getInstrumentation().getTargetContext(),
                 MainActivity.class);
         intent.putExtra("Category", (java.io.Serializable) category);
-        this.intent = intent;
+        setActivityIntent(intent);
+        activity = getActivity();
     }
 
     public void testActivityNotNull(){
-        startActivity(intent, null, null);
-        activity = getActivity();
         assertNotNull(activity);
     }
 
-    public void testPerfomItemClick() {
-        activity = startActivity(intent, null, null);
-        getInstrumentation().callActivityOnStart(activity);
-        getInstrumentation().callActivityOnResume(activity);
-
+    public void testListViewIsEmpty(){
         ListView listView = (ListView) activity.findViewById(R.id.ProductListView);
         assertNotNull(listView);
+    }
 
-        Product[] products = new Product[1];
-        products[0] = product;
-        productsAdapter myAdapter = new productsAdapter(getInstrumentation().getContext(), products);
-        listView.setAdapter(myAdapter);
-        myAdapter.notifyDataSetChanged();
-        assertEquals(1, myAdapter.getCount());
+    public void testListViewHasChild(){
+        ListView listView = (ListView) activity.findViewById(R.id.ProductListView);
         assertEquals(1, listView.getChildCount());
+    }
 
+    public void testFirstItemNotNull(){
+        ListView listView = (ListView) activity.findViewById(R.id.ProductListView);
         View firstItem = listView.getChildAt(0);
         assertNotNull(firstItem);
     }
 
+    public void testPerfomItemClick() {
+        ListView listView = (ListView) activity.findViewById(R.id.ProductListView);
+        View firstItem = listView.getChildAt(0);
+        Button button = (Button)firstItem.findViewById(R.id.pricebotton);
+
+        Instrumentation.ActivityMonitor monitor = getInstrumentation().addMonitor(
+                ProductActivity.class.getName(), null, false
+        );
+
+        TouchUtils.clickView(this, button);
+        Activity contactDetailActivity =
+                (Activity)monitor.waitForActivityWithTimeout(1000);
+        assertNotNull(contactDetailActivity);
+        assertTrue(getInstrumentation().checkMonitorHit(monitor, 1));
+        contactDetailActivity.finish();
+    }
 }
