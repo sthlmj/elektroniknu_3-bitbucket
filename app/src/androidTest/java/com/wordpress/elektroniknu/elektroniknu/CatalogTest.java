@@ -33,6 +33,16 @@ public class CatalogTest extends TestCase {
         assertTrue(catalog.getCategories(9).getProductArray()[0].equals(product2));
     }
 
+    public void testSortNullProductIntoCatalog(){
+        Product[] products = new Product[1];
+        try{
+            catalog.sortProducts(products);
+            assertTrue(true);
+        }catch(Throwable e){
+            fail();
+        }
+    }
+
     public boolean getCategoriesName(){
         if(!catalog.getCategories(0).getCategoryName().equals("Skönhet")){
             return false;
