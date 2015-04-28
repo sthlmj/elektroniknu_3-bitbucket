@@ -22,6 +22,8 @@ public class ProductActivity extends ActionBarActivity {
         Category category = (Category) intent.getSerializableExtra("Category");     //receive category
 
         new setAdapter().execute(category);         //execute new Thread for the ListView in Category
+
+
     }
 
 

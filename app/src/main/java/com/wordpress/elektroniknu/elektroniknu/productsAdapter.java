@@ -1,14 +1,19 @@
 package com.wordpress.elektroniknu.elektroniknu;
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.TextView;
 
+
 class productsAdapter extends ArrayAdapter<Product>{
+
 
     //CONSTRUCTOR
     productsAdapter(Context context, Product[] products) {
@@ -21,13 +26,13 @@ class productsAdapter extends ArrayAdapter<Product>{
         LayoutInflater myInflater = LayoutInflater.from(getContext());
         View productView = myInflater.inflate(R.layout.product_row, parent, false);
 
-        Product product = getItem(position);
+       final Product product = getItem(position);
 
         //LINK TO EVERY VIEW OBJECT IN XML
         WebView productImageView = (WebView) productView.findViewById(R.id.produktWebView);
         TextView productNameTextView = (TextView) productView.findViewById(R.id.produktNameTextView);
         TextView storeTextView = (TextView) productView.findViewById(R.id.storeTextView);
-        TextView priceTextView = (TextView) productView.findViewById(R.id.pricebotton);
+        Button priceButton = (Button) productView.findViewById(R.id.pricebotton);
         TextView description1TextView = (TextView) productView.findViewById(R.id.description1TextView);
         TextView description2TextView = (TextView) productView.findViewById(R.id.description2TextView);
         TextView description3TextView = (TextView) productView.findViewById(R.id.description3TextView);
@@ -37,7 +42,7 @@ class productsAdapter extends ArrayAdapter<Product>{
         productImageView.loadData(html, "text/html", null);
         productNameTextView.setText(product.getProductName());
         storeTextView.setText(product.getStoreName());
-        priceTextView.setText(product.getProductPrice());
+        priceButton.setText(product.getProductPrice());
         try {
             description1TextView.setText(product.getProductDescription()[0]);
             try{
@@ -51,8 +56,18 @@ class productsAdapter extends ArrayAdapter<Product>{
             description1TextView.setText("Ingen beskrivning");
         }
 
+        priceButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String urlForOne = product.getUrl();
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                intent.setData(Uri.parse(urlForOne));
+                getContext().startActivity(intent);
+            }
+        });
         return productView;
     }
+
 
     /*private class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
         ImageView bmImage;
