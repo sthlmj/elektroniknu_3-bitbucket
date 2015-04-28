@@ -60,7 +60,7 @@ public class ProductActivityTest extends ActivityInstrumentationTestCase2<Produc
 
     public void testListViewHasChild(){
         ListView listView = (ListView) activity.findViewById(R.id.ProductListView);
-        assertEquals(1, listView.getChildCount());
+        assertTrue(listView.getChildCount() > 0);
     }
 
     public void testFirstItemNotNull(){
