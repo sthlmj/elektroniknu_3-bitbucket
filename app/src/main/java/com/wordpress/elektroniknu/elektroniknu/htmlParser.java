@@ -7,4 +7,5 @@ interface HtmlParser {
     public List<Product> getProducts();
     public Product[] getProductArray();
     public void startParser();
+    public String getParserName();
 }
