@@ -7,7 +7,7 @@
     android:background="@color/white">
 
     <WebView
-        android:layout_width="328dp"
+        android:layout_width="match_parent"
         android:layout_height="300dp"
         android:id="@+id/produktWebView"
         android:layout_gravity="center_horizontal" />
@@ -19,7 +19,9 @@
         android:text="ProduktNamn"
         android:id="@+id/produktNameTextView"
         android:paddingStart="16dp"
-        android:textSize="20dp" />
+        android:textSize="19dp"
+        android:layout_marginTop="10dp"
+        android:textIsSelectable="false" />
 
     <RelativeLayout
         android:orientation="horizontal"
@@ -35,11 +37,11 @@
             android:id="@+id/storeTextView"
             android:paddingStart="16dp"
             android:textIsSelectable="false"
-            android:textSize="30dp"
+            android:textSize="28dp"
             android:textStyle="bold" />
 
         <Button
-            android:layout_width="60dp"
+            android:layout_width="80dp"
             android:layout_height="35dp"
             android:text="Pris"
             android:textColor="@color/white"
