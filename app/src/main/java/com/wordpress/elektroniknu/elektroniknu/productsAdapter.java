@@ -65,6 +65,19 @@ class productsAdapter extends ArrayAdapter<Product>{
                 getContext().startActivity(intent);
             }
         });
+
+        productNameTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String urlForOne = product.getUrl();
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                intent.setData(Uri.parse(urlForOne));
+                getContext().startActivity(intent);
+            }
+        });
+
+
+
         return productView;
     }
 
