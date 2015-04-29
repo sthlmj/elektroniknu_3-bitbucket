@@ -1,6 +1,7 @@
 package com.wordpress.elektroniknu.elektroniknu;
 
 import android.app.Instrumentation;
+import android.content.Intent;
 import android.test.TouchUtils;
 import android.view.View;
 import android.widget.ImageButton;
@@ -22,6 +23,11 @@ public class MainActivityTest extends
     @Override
     public void setUp() throws Exception {
         super.setUp();
+        Catalog catalog = new Catalog();
+        Intent intent = new Intent(getInstrumentation().getTargetContext(),
+                WelcomeActivity.class);
+        intent.putExtra("Catalog", (java.io.Serializable) catalog);
+        setActivityIntent(intent);
         setActivityInitialTouchMode(false);
         activity = getActivity();
     }
