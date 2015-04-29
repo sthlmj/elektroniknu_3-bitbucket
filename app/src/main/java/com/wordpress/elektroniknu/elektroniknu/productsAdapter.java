@@ -38,15 +38,8 @@ class productsAdapter extends ArrayAdapter<Product>{
         TextView description3TextView = (TextView) productView.findViewById(R.id.description3TextView);
 
         //ADAPTS THE PROPERTIES ON WHOLE PRODUCT ROW
-       /* String html = "<html><body><img src=\"" + product.getProductImageUrl() + "\" width=\"100%\" height=\"100%\"\"/></body></html>";
-        productImageView.loadData(html, "text/html", null);*/
-        productImageView.setInitialScale(30);
-        productImageView.getSettings().setJavaScriptEnabled(true);
-        productImageView.getSettings().setLoadWithOverviewMode(true);
-        productImageView.getSettings().setUseWideViewPort(true);
-        productImageView.setScrollBarStyle(WebView.SCROLLBARS_OUTSIDE_OVERLAY);
-        productImageView.setScrollbarFadingEnabled(false);
-        productImageView.loadUrl(product.getProductImageUrl());
+        String html = "<html><body><img src=\"" + product.getProductImageUrl() + "\" width=\"100%\" height=\"100%\"\"/></body></html>";
+        productImageView.loadData(html, "text/html", null);
         productNameTextView.setText(product.getProductName());
         storeTextView.setText(product.getStoreName());
         String price = product.getProductPrice();
