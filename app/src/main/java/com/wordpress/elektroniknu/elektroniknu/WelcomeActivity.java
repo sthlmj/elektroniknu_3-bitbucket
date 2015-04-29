@@ -64,7 +64,7 @@ public class WelcomeActivity extends ActionBarActivity {
         protected void onProgressUpdate(String... progress) {
             if(progress.length == 2){
                 downloadingProgressBar.setProgress(Integer.parseInt(progress[0]));
-                downloadingTextView.setText("Ladda ner produkter från " + progress[1]);
+                downloadingTextView.setText("Hämtar produkter från " + progress[1]);
             }else {
                 downloadingProgressBar.setProgress(Integer.parseInt(progress[0]));
                 Toast.makeText(getBaseContext(), progress[1], Toast.LENGTH_SHORT).show();

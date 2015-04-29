@@ -1,11 +1,10 @@
+
 package com.wordpress.elektroniknu.elektroniknu;
 
-import android.app.ActionBar;
 import android.content.Intent;
 import android.os.AsyncTask;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.view.Menu;
+import android.support.v7.app.ActionBarActivity;
 import android.view.MenuItem;
 import android.widget.ListAdapter;
 import android.widget.ListView;
@@ -25,8 +24,10 @@ public class ProductActivity extends ActionBarActivity {
         new setAdapter().execute(category);         //execute new Thread for the ListView in Category
         if(category.getProductList().size() == 0)
         {
-            Toast.makeText(getBaseContext(), "ingen erbjudande", Toast.LENGTH_LONG).show();
+            Toast.makeText(getBaseContext(), "inga erbjudanden", Toast.LENGTH_SHORT).show();
+
         }
+        getSupportActionBar().setTitle(category.getCategoryName());
 
     }
 
