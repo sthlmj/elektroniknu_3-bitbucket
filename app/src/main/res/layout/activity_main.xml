@@ -33,7 +33,7 @@
         android:layout_below="@id/titleTextView"
         android:choiceMode="singleChoice"
         android:drawSelectorOnTop="true"
-        android:background="@drawable/list_selector">
+        android:background="#F1DDCB">
     </ListView>
 
     <ImageButton
