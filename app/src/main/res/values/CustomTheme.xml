@@ -13,7 +13,6 @@
     <style name="MyTitleTextStyle" parent="@style/TextAppearance.AppCompat.Widget.ActionBar.Title">
         <item name="android:textColor">@color/white</item>
         <item name="android:textSize">30sp</item>
-        <item name="android:centerX"></item>
     </style>
 
 </resources>
