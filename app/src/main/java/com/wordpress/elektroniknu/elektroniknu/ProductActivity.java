@@ -24,7 +24,7 @@ public class ProductActivity extends ActionBarActivity {
         new setAdapter().execute(category);         //execute new Thread for the ListView in Category
         if(category.getProductList().size() == 0)
         {
-            Toast.makeText(getBaseContext(), "ingen erbjudande", Toast.LENGTH_LONG).show();
+            Toast.makeText(getBaseContext(), "inga erbjudanden", Toast.LENGTH_SHORT).show();
 
         }
         getSupportActionBar().setTitle(category.getCategoryName());
