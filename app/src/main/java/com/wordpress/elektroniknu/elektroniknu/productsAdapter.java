@@ -8,61 +8,81 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
 import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 
-class productsAdapter extends ArrayAdapter<Product>{
+class productsAdapter extends BaseAdapter{
 
+    private LayoutInflater mInflater;
+    private Product[] products;
 
     //CONSTRUCTOR
-    productsAdapter(Context context, Product[] products) {
-        super(context, R.layout.product_row, products);
+    public productsAdapter(Context context, Product[] products) {
+        mInflater = LayoutInflater.from(context);
+        this.products = products;
+    }
+
+    public int getCount(){
+        return products.length;
+    }
+
+    public Product getItem(int position){
+        return products[position];
+    }
+
+    public long getItemId(int position){
+        return position;
     }
 
     //ADAPT PROPERTIES OF EVERY VIEW OBJECT
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        LayoutInflater myInflater = LayoutInflater.from(getContext());
-        View productView = myInflater.inflate(R.layout.product_row, parent, false);
-
-       final Product product = getItem(position);
-
-        //LINK TO EVERY VIEW OBJECT IN XML
-        WebView productImageView = (WebView) productView.findViewById(R.id.produktWebView);
-        TextView productNameTextView = (TextView) productView.findViewById(R.id.produktNameTextView);
-        TextView storeTextView = (TextView) productView.findViewById(R.id.storeTextView);
-        Button priceButton = (Button) productView.findViewById(R.id.pricebotton);
-        TextView description1TextView = (TextView) productView.findViewById(R.id.description1TextView);
-        TextView description2TextView = (TextView) productView.findViewById(R.id.description2TextView);
-        TextView description3TextView = (TextView) productView.findViewById(R.id.description3TextView);
-
-        //ADAPTS THE PROPERTIES ON WHOLE PRODUCT ROW
-        String html = "<html><body><img src=\"" + product.getProductImageUrl() + "\" width=\"100%\" height=\"100%\"\"/></body></html>";
-        productImageView.loadData(html, "text/html", null);
-        productNameTextView.setText(product.getProductName());
-        storeTextView.setText(product.getStoreName());
-        String price = product.getProductPrice();
-        priceButton.setText(price);
+        ViewHolder holder;
+        Product p = products[position];
+        if(convertView == null){
+            convertView = mInflater.inflate(R.layout.product_row, null);
+            holder = new ViewHolder();
+            holder.image = (ImageView) convertView.findViewById(R.id.produktWebView);
+            holder.productName = (TextView) convertView.findViewById(R.id.produktNameTextView);
+            holder.storeText = (TextView) convertView.findViewById(R.id.storeTextView);
+            holder.price = (Button) convertView.findViewById(R.id.pricebotton);
+            holder.description1 = (TextView) convertView.findViewById(R.id.description1TextView);
+            holder.description2 = (TextView) convertView.findViewById(R.id.description2TextView);
+            holder.description3 = (TextView) convertView.findViewById(R.id.description3TextView);
+            convertView.setTag(holder);
+        }else{
+            holder = (ViewHolder) convertView.getTag();
+        }
+        holder.productName.setText(p.getProductName());
+        holder.storeText.setText(p.getStoreName());
+        holder.price.setText(p.getProductPrice());
         try {
-            description1TextView.setText(product.getProductDescription()[0]);
+            holder.description1.setText(p.getProductDescription()[0]);
             try{
-                description2TextView.setText(product.getProductDescription()[1]);
+                holder.description2.setText(p.getProductDescription()[1]);
                 try{
-                    description3TextView.setText(product.getProductDescription()[2]);
+                    holder.description3.setText(p.getProductDescription()[2]);
                 }catch (NullPointerException e){}
             }catch(NullPointerException e){
             }
         }catch(NullPointerException e){
-            description1TextView.setText(" ");
-            description2TextView.setText(" ");
-            description3TextView.setText(" ");
+            holder.description1.setText(" ");
+            holder.description2.setText(" ");
+            holder.description3.setText(" ");
+        }
+        if(p.getImage() != null){
+            holder.image.setImageBitmap(p.getImage());
+        }else{
+            holder.image.setImageResource(R.drawable.ic_action_about);
         }
 
-        priceButton.setOnClickListener(new View.OnClickListener() {
+       /* priceButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String urlForOne = product.getUrl();
+                String urlForOne = p.getUrl();
                 Intent intent = new Intent(Intent.ACTION_VIEW);
                 intent.setData(Uri.parse(urlForOne));
                 getContext().startActivity(intent);
@@ -72,16 +92,26 @@ class productsAdapter extends ArrayAdapter<Product>{
         productNameTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String urlForOne = product.getUrl();
+                String urlForOne = p.getUrl();
                 Intent intent = new Intent(Intent.ACTION_VIEW);
                 intent.setData(Uri.parse(urlForOne));
-                getContext().startActivity(intent);
+                ProductActivity.this.startActivity(intent);
             }
-        });
+        });*/
 
 
 
-        return productView;
+        return convertView;
+    }
+
+    static class ViewHolder{
+        ImageView image;
+        TextView productName;
+        TextView storeText;
+        Button price;
+        TextView description1;
+        TextView description2;
+        TextView description3;
     }
 
 
