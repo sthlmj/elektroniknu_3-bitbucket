@@ -9,10 +9,10 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:text="ElektronikNU"
-        android:textColor="#ffffff"
+        android:textColor="@color/white"
         android:id="@+id/action_bar_title"
         android:textSize="25sp"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"/>
+        android:windowActionBarOverlay = "false"
+        android:layout_centerInParent="true" />
 
 </RelativeLayout>

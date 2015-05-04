@@ -1,13 +1,21 @@
 
 package com.wordpress.elektroniknu.elektroniknu;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
+import android.text.SpannableString;
+import android.text.method.LinkMovementMethod;
+import android.text.util.Linkify;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -27,8 +35,11 @@ public class ProductActivity extends ActionBarActivity {
             Toast.makeText(getBaseContext(), "inga erbjudanden", Toast.LENGTH_SHORT).show();
 
         }
-        getSupportActionBar().setTitle(category.getCategoryName());
-
+        ActionBar myaction = getSupportActionBar();
+        myaction.setTitle(category.getCategoryName());
+        myaction.setDisplayShowHomeEnabled(true);
+        myaction.setHomeButtonEnabled(true);
+        myaction.setDisplayHomeAsUpEnabled(true);
     }
 
 
@@ -49,25 +60,47 @@ public class ProductActivity extends ActionBarActivity {
             Toast.makeText(getBaseContext(), string, Toast.LENGTH_LONG).show();
         }
     }
-  /*  @Override
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_product, menu);
         return true;
-    }*/
+    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        switch (item.getItemId()) {
+            case R.id.action_about:
+                openAbout();
+            case android.R.id.home:
+                Intent homeIntent = new Intent(this, MainActivity.class);
+                homeIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(homeIntent);
+                return true;
         }
-
         return super.onOptionsItemSelected(item);
+    }
+    public void openAbout()
+    {
+
+        final SpannableString stMyWeb = new SpannableString("elektroniknu.wordpress.com");
+        Linkify.addLinks(stMyWeb, Linkify.ALL);
+
+        final AlertDialog aboutDialog = new AlertDialog.Builder(ProductActivity.this)
+                .setTitle("Om oss")
+                .setMessage(stMyWeb)
+                .setNeutralButton("OK", new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // TODO Auto-generated method stub
+                    }})
+                .create();
+
+        aboutDialog.show();
+
+        ((TextView)aboutDialog.findViewById(android.R.id.message))
+                .setMovementMethod(LinkMovementMethod.getInstance());
+
     }
 }

@@ -249,22 +249,10 @@ public class MainActivity extends ActionBarActivity implements GestureDetector.O
      * @return
      */
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        // int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        //if (id == R.id.action_settings) {
-        //  return true;
-        //}
         switch (item.getItemId()) {
-
-
             case R.id.action_about:
                 openAbout();
                 return true;
-
         }
         return super.onOptionsItemSelected(item);
     }
@@ -275,10 +263,10 @@ public class MainActivity extends ActionBarActivity implements GestureDetector.O
      */
 
     // actionbar "Om oss" with link to our homepage
-    private void openAbout()
+    public void openAbout()
     {
 
-        final SpannableString stMyWeb = new SpannableString("https://elektroniknu.wordpress.com/");
+        final SpannableString stMyWeb = new SpannableString("elektroniknu.wordpress.com");
         Linkify.addLinks(stMyWeb, Linkify.ALL);
 
         final AlertDialog aboutDialog = new AlertDialog.Builder(MainActivity.this)
@@ -299,19 +287,6 @@ public class MainActivity extends ActionBarActivity implements GestureDetector.O
 
     }
 
-
-    //open About
-   /* private void openAbout() {
-        new AlertDialog.Builder(this)
-        .setTitle("Om oss")
-        .setMessage("elektroniknu.wordpress.com")
-        .setNeutralButton("OK", new DialogInterface.OnClickListener() {
-
-            public void onClick(DialogInterface dialog, int which) {
-
-            }
-        }).show();
-    }*/
 
 
 }
