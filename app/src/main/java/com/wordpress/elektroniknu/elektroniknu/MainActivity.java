@@ -5,14 +5,17 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v4.view.GestureDetectorCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.text.SpannableString;
 import android.text.method.LinkMovementMethod;
 import android.text.util.Linkify;
+import android.view.GestureDetector;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageButton;
@@ -24,16 +27,20 @@ import java.util.LinkedList;
 import java.util.List;
 
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends ActionBarActivity implements GestureDetector.OnGestureListener{
 
     //CREATE NEW CATALOG
      Catalog catalog;
+    private GestureDetectorCompat gestureDetector;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         // Set the first screen the user should view
         setContentView(R.layout.activity_main);
+
+        //set gestureDetector
+        this.gestureDetector = new GestureDetectorCompat(this, this);
 
         Intent intent = this.getIntent();
         catalog = (Catalog) intent.getSerializableExtra("Catalog");
@@ -109,8 +116,7 @@ public class MainActivity extends ActionBarActivity {
         });
     }
 
-    //WHEN CLICK ON ARROW BUTTON ON TITLE
-    public void onPreviosImageButtonClick(View v){
+    public void changeList(){
         TextView titleTextView = (TextView) findViewById(R.id.titleTextView);
 
         //if title is "Butiker", open corresponding listView
@@ -118,7 +124,7 @@ public class MainActivity extends ActionBarActivity {
             Category[] categories = catalog.getCategories();
             List<String> theNewCatNames = new LinkedList<String>();
             for(Category c: categories){
-                    theNewCatNames.add(c.getCategoryName());
+                theNewCatNames.add(c.getCategoryName());
             }
 
             //Use Adapter to define the design of the listView
@@ -158,55 +164,63 @@ public class MainActivity extends ActionBarActivity {
             titleTextView.setText("Butiker");
         }
     }
+    //WHEN CLICK ON ARROW BUTTON ON TITLE
+    public void onPreviosImageButtonClick(View v){
+        changeList();
+    }
 
     //EXACTLY AS onPreviousImageButtonClick()
     public void onNextImageButtonClick(View v){
-        TextView titleTextView = (TextView) findViewById(R.id.titleTextView);
-        if(titleTextView.getText().equals("Butiker")){
-            Category[] categories = catalog.getCategories();
-            List<String> theNewCatNames = new LinkedList<String>();
-            for(Category c: categories){
-                    theNewCatNames.add(c.getCategoryName());
-            }
-
-            //Use Adapter to define the design of the listView
-            ListAdapter theAdapter = new storesAdapter(this,theNewCatNames.toArray(new String[theNewCatNames.size()]));
-            ListView theListView = (ListView) findViewById(R.id.theListView);
-
-            theListView.setAdapter(theAdapter);
-            getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
-            getSupportActionBar().setCustomView(R.layout.titlebar);
-            titleTextView.setText("Produkter");
-        }else{
-            String[] electronicSupplier;
-            try {
-                // Get how many lines the resource file should be
-                int lines = TextFileHandler.getLines(getResources());
-
-                // Create an new array with the size of lines
-                electronicSupplier = new String[lines];
-
-                // Put store names in the array
-                // with for loop
-                for(int i=0; i<lines; i++){
-                    electronicSupplier[i] = TextFileHandler.getStoreName(i+1, getResources());
-
-                }
-                // Catch IOException put dummycode in string
-            } catch (IOException e) {
-                electronicSupplier = new String[]{"adw", "@da"};
-            }
-            ListAdapter theAdapter = new storesAdapter(this,electronicSupplier);
-            ListView theListView = (ListView) findViewById(R.id.theListView);
-
-            theListView.setAdapter(theAdapter);
-            getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
-            getSupportActionBar().setCustomView(R.layout.titlebar);
-            titleTextView.setText("Butiker");
-        }
+        changeList();
     }
 
-    public class getProductsfromserver extends AsyncTask<HtmlParser, Void, Product[]> {
+    /////////////////////////////////////Gesture///////////////////////////////////////////////////
+    @Override
+    public boolean onDown(MotionEvent e) {
+        return true;
+    }
+
+    @Override
+    public void onShowPress(MotionEvent e) {
+
+    }
+
+    @Override
+    public boolean onSingleTapUp(MotionEvent e) {
+        return true;
+    }
+
+    @Override
+    public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
+        return true;
+    }
+
+    @Override
+    public void onLongPress(MotionEvent e) {
+
+    }
+
+    @Override
+    public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
+        if(e1.getX() - e2.getX() > 300 ||e2.getX() - e1.getX() > 300)
+        {
+            changeList();
+            return true;
+        }
+        else
+            return false;
+    }
+
+    //////////////////////////////////End of Gesture/////////////////////////////////
+
+
+        @Override
+        public boolean dispatchTouchEvent(MotionEvent ev) {
+            this.gestureDetector.onTouchEvent(ev);
+            return super.dispatchTouchEvent(ev);
+        }
+
+        public class getProductsfromserver extends AsyncTask<HtmlParser, Void, Product[]> {
         @Override
         //Starts new parsers with thread
         protected Product[] doInBackground(HtmlParser... parsers) {
