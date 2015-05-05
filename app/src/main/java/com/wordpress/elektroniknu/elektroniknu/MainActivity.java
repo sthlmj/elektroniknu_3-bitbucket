@@ -327,7 +327,4 @@ public class MainActivity extends ActionBarActivity implements GestureDetector.O
                 .setMovementMethod(LinkMovementMethod.getInstance());
 
     }
-
-
-
 }
