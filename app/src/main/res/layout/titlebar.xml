@@ -1,18 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2"/>
+
+    <ImageView
         android:layout_gravity="center"
-        android:text="ElektronikNU"
-        android:textColor="#ffffff"
-        android:id="@+id/action_bar_title"
-        android:textSize="25sp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="6"
+        android:clickable="false"
+        android:duplicateParentState="false"
+        android:focusable="false"
+        android:scaleType="centerInside"
+        android:longClickable="false"
+        android:src="@drawable/activity_bar_logo"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"/>
 
-</RelativeLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2"/>
+
+</LinearLayout>
