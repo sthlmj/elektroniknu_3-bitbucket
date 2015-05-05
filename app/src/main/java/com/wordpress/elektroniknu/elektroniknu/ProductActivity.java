@@ -6,7 +6,6 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.MenuItem;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 

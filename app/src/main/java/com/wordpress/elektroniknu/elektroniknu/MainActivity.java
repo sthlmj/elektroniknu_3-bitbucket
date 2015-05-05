@@ -298,20 +298,4 @@ public class MainActivity extends ActionBarActivity implements GestureDetector.O
                 .setMovementMethod(LinkMovementMethod.getInstance());
 
     }
-
-
-    //open About
-   /* private void openAbout() {
-        new AlertDialog.Builder(this)
-        .setTitle("Om oss")
-        .setMessage("elektroniknu.wordpress.com")
-        .setNeutralButton("OK", new DialogInterface.OnClickListener() {
-
-            public void onClick(DialogInterface dialog, int which) {
-
-            }
-        }).show();
-    }*/
-
-
 }

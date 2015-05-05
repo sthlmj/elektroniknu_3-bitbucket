@@ -4,7 +4,6 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.util.Log;
-
 import java.io.InputStream;
 import java.io.Serializable;
 import java.net.HttpURLConnection;
