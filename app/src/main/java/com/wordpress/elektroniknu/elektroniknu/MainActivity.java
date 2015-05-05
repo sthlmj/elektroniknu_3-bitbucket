@@ -11,6 +11,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.text.SpannableString;
 import android.text.method.LinkMovementMethod;
 import android.text.util.Linkify;
+import android.util.Log;
 import android.view.GestureDetector;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -32,19 +33,23 @@ public class MainActivity extends ActionBarActivity implements GestureDetector.O
     //CREATE NEW CATALOG
      Catalog catalog;
     private GestureDetectorCompat gestureDetector;
+    private static final String TAG ="my";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         // Set the first screen the user should view
         setContentView(R.layout.activity_main);
+        Log.i(TAG,"onCreate");
 
         //set gestureDetector
         this.gestureDetector = new GestureDetectorCompat(this, this);
 
-        Intent intent = this.getIntent();
-        catalog = (Catalog) intent.getSerializableExtra("Catalog");
 
+        if(catalog == null) {
+            Intent intent = this.getIntent();
+            catalog = (Catalog) intent.getSerializableExtra("Catalog");
+        }
         // touch feedback 
         ImageButton back =(ImageButton)findViewById(R.id.previosImageButton);
         ImageButton next =(ImageButton)findViewById(R.id.nextImageButton);
@@ -114,6 +119,42 @@ public class MainActivity extends ActionBarActivity implements GestureDetector.O
                 }
             }
         });
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Log.i(TAG,"onStart");
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        Log.i(TAG,"onRestart");
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.i(TAG,"onResume");
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Log.i(TAG,"onStop");
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.i(TAG,"onDestroy");
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Log.i(TAG,"onPause");
     }
 
     public void changeList(){
@@ -249,22 +290,10 @@ public class MainActivity extends ActionBarActivity implements GestureDetector.O
      * @return
      */
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        // int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        //if (id == R.id.action_settings) {
-        //  return true;
-        //}
         switch (item.getItemId()) {
-
-
             case R.id.action_about:
                 openAbout();
                 return true;
-
         }
         return super.onOptionsItemSelected(item);
     }
@@ -275,10 +304,10 @@ public class MainActivity extends ActionBarActivity implements GestureDetector.O
      */
 
     // actionbar "Om oss" with link to our homepage
-    private void openAbout()
+    public void openAbout()
     {
 
-        final SpannableString stMyWeb = new SpannableString("https://elektroniknu.wordpress.com/");
+        final SpannableString stMyWeb = new SpannableString("elektroniknu.wordpress.com");
         Linkify.addLinks(stMyWeb, Linkify.ALL);
 
         final AlertDialog aboutDialog = new AlertDialog.Builder(MainActivity.this)
@@ -299,19 +328,6 @@ public class MainActivity extends ActionBarActivity implements GestureDetector.O
 
     }
 
-
-    //open About
-   /* private void openAbout() {
-        new AlertDialog.Builder(this)
-        .setTitle("Om oss")
-        .setMessage("elektroniknu.wordpress.com")
-        .setNeutralButton("OK", new DialogInterface.OnClickListener() {
-
-            public void onClick(DialogInterface dialog, int which) {
-
-            }
-        }).show();
-    }*/
 
 
 }

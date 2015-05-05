@@ -1,7 +1,9 @@
 package com.wordpress.elektroniknu.elektroniknu;
 
 import android.content.Intent;
+import android.support.v4.app.NavUtils;
 import android.support.v4.view.MenuItemCompat;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.support.v7.widget.ShareActionProvider;
@@ -44,6 +46,10 @@ public class StorePdfActivity extends ActionBarActivity {
                 startActivity(intent); // Start that intent
             }
         }
+
+        ActionBar myaction = getSupportActionBar();
+        myaction.setDisplayHomeAsUpEnabled(true);
+
     }
 
     public class myWebViewClient extends WebViewClient { // WebViewClient to override URL loading
@@ -67,6 +73,16 @@ public class StorePdfActivity extends ActionBarActivity {
         setShareIntent();
 
         return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                NavUtils.navigateUpFromSameTask(this);
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     private void setShareIntent(){
