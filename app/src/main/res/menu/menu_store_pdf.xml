@@ -4,7 +4,6 @@
     <!-- Share item -->
     <item
         android:id="@+id/menu_item_share"
-        android:title="Share"
         omgandroid:showAsAction="ifRoom"
         omgandroid:actionProviderClass= "android.support.v7.widget.ShareActionProvider" />
 </menu>

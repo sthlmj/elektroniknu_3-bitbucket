@@ -11,6 +11,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.text.SpannableString;
 import android.text.method.LinkMovementMethod;
 import android.text.util.Linkify;
+import android.util.Log;
 import android.view.GestureDetector;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -32,19 +33,23 @@ public class MainActivity extends ActionBarActivity implements GestureDetector.O
     //CREATE NEW CATALOG
      Catalog catalog;
     private GestureDetectorCompat gestureDetector;
+    private static final String TAG ="my";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         // Set the first screen the user should view
         setContentView(R.layout.activity_main);
+        Log.i(TAG,"onCreate");
 
         //set gestureDetector
         this.gestureDetector = new GestureDetectorCompat(this, this);
 
-        Intent intent = this.getIntent();
-        catalog = (Catalog) intent.getSerializableExtra("Catalog");
 
+        if(catalog == null) {
+            Intent intent = this.getIntent();
+            catalog = (Catalog) intent.getSerializableExtra("Catalog");
+        }
         // touch feedback 
         ImageButton back =(ImageButton)findViewById(R.id.previosImageButton);
         ImageButton next =(ImageButton)findViewById(R.id.nextImageButton);
@@ -114,6 +119,42 @@ public class MainActivity extends ActionBarActivity implements GestureDetector.O
                 }
             }
         });
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Log.i(TAG,"onStart");
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        Log.i(TAG,"onRestart");
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.i(TAG,"onResume");
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Log.i(TAG,"onStop");
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.i(TAG,"onDestroy");
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Log.i(TAG,"onPause");
     }
 
     public void changeList(){

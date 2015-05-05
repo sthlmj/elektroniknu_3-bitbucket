@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v4.app.NavUtils;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.text.SpannableString;
@@ -37,8 +38,6 @@ public class ProductActivity extends ActionBarActivity {
         }
         ActionBar myaction = getSupportActionBar();
         myaction.setTitle(category.getCategoryName());
-        myaction.setDisplayShowHomeEnabled(true);
-        myaction.setHomeButtonEnabled(true);
         myaction.setDisplayHomeAsUpEnabled(true);
     }
 
@@ -73,9 +72,10 @@ public class ProductActivity extends ActionBarActivity {
             case R.id.action_about:
                 openAbout();
             case android.R.id.home:
-                Intent homeIntent = new Intent(this, MainActivity.class);
-                homeIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(homeIntent);
+                NavUtils.navigateUpFromSameTask(this);
+               // Intent homeIntent = new Intent(this, MainActivity.class);
+               //homeIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                //startActivity(homeIntent);
                 return true;
         }
         return super.onOptionsItemSelected(item);
