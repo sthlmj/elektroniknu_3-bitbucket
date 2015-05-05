@@ -40,7 +40,7 @@ public class sibaHtmlParser implements HtmlParser {
         Document Doc = null;
         //TRY TO GET HTML CODE WITH URL
         try{
-            Doc = Jsoup.connect("http://www.siba.se/aktuella-kampanjer/veckans-erbjudande").get();  // HTML file from their website
+            Doc = Jsoup.connect("http://www.siba.se/aktuella-kampanjer/veckans-erbjudande?order=-1&sort=0&page=1&size=48").get();  // HTML file from their website
         }catch(IOException ex){ // Catch exception
             Logger.getLogger(sibaHtmlParser.class.getName()).log(Level.SEVERE, null, ex);           // Print out at log
         }
