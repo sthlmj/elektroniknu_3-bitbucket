@@ -13,6 +13,8 @@ import android.widget.Toast;
 
 public class ProductActivity extends ActionBarActivity {
 
+    productsAdapter adapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,7 +23,13 @@ public class ProductActivity extends ActionBarActivity {
         Intent intent = this.getIntent();           //Create new Intent for receiving category
         Category category = (Category) intent.getSerializableExtra("Category");     //receive category
 
-        new setAdapter().execute(category);         //execute new Thread for the ListView in Category
+        //new setAdapter().execute(category);         //execute new Thread for the ListView in Category
+        adapter = new productsAdapter(ProductActivity.this, category.getProductArray());
+        ListView listView = (ListView) findViewById(R.id.ProductListView);
+        listView.setAdapter(adapter);
+
+        new setPicture().execute(category.getProductArray());
+
         if(category.getProductList().size() == 0)
         {
             Toast.makeText(getBaseContext(), "inga erbjudanden", Toast.LENGTH_SHORT).show();
@@ -33,20 +41,14 @@ public class ProductActivity extends ActionBarActivity {
 
 
     //DEFINE THE THREAD
-    public class setAdapter extends AsyncTask<Category, Void, String> {
+    public class setPicture extends AsyncTask<Product, Void, Void> {
 
         @Override
-        protected String doInBackground(Category... category) {
-            ListAdapter theAdapter = new productsAdapter(ProductActivity.this, category[0].getProductArray());  //Get all products in Category
-            ListView theListView = (ListView) findViewById(R.id.ProductListView);
-            theListView.setAdapter(theAdapter);
-            return(category[0].getCategoryName());
-        }
-
-        @Override
-        protected void onPostExecute(String string) {
-            //Toast when thread is executed
-            Toast.makeText(getBaseContext(), string, Toast.LENGTH_LONG).show();
+        protected Void doInBackground(Product... products) {
+            for(Product p : products){
+                p.loadImage(adapter);
+            }
+            return null;
         }
     }
   /*  @Override
