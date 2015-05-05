@@ -18,16 +18,17 @@ public class Catalog implements Serializable{
         }
 
         //Sets name of categories
-        categories[0].setCategoryName("Skönhet");
-        categories[1].setCategoryName("Vitvaror");
-        categories[2].setCategoryName("Ljud");
-        categories[3].setCategoryName("Dator och surfplattor");
-        categories[4].setCategoryName("Bild");
-        categories[5].setCategoryName("Mobil och tillbehör");
-        categories[6].setCategoryName("Spel och spelkonsol");
-        categories[7].setCategoryName("Tv och tillbehör");
-        categories[8].setCategoryName("Hemmet");
+        categories[0].setCategoryName("Dator och surfplattor");
+        categories[1].setCategoryName("Mobil och tillbehör");
+        categories[2].setCategoryName("Tv och tillbehör");
+        categories[3].setCategoryName("Spel och spelkonsol");
+        categories[4].setCategoryName("Ljud");
+        categories[5].setCategoryName("Bild");
+        categories[6].setCategoryName("Vitvaror");
+        categories[7].setCategoryName("Hemmet");
+        categories[8].setCategoryName("Skönhet");
         categories[9].setCategoryName("Annat");
+
     }
 
     public Category[] getCategories(){
@@ -67,32 +68,33 @@ public class Catalog implements Serializable{
             name = p.getCategoryName();
             try {                                       //try match a products category name with our categories
                 if (contain(name, "Spel")) {
-                    categories[6].addProduct(p);
+                    categories[3].addProduct(p);
                 } else if (contain(name, "Vitvaror")) {
-                    categories[1].addProduct(p);
+                    categories[6].addProduct(p);
                 } else if (contain(name, "Tv")) {
-                    categories[7].addProduct(p);
-                } else if (contain(name, "Hem")) {
-                    categories[8].addProduct(p);
-                }else if (contain(name, "Dator")) {
-                    categories[3].addProduct(p);
-                } else if (contain(name, "Mobil")) {
-                    categories[5].addProduct(p);
-                } else if (contain(name, "Surfplatta")) {
-                    categories[3].addProduct(p);
-                } else if (contain(name, "Ljud")) {
                     categories[2].addProduct(p);
-                } else if (contain(name, "Hälsa")) {
+                } else if (contain(name, "Hem")) {
+                    categories[7].addProduct(p);
+                }else if (contain(name, "Dator")) {
                     categories[0].addProduct(p);
+                } else if (contain(name, "Mobil")) {
+                    categories[1].addProduct(p);
+                } else if (contain(name, "Surfplatta")) {
+                    categories[0].addProduct(p);
+                } else if (contain(name, "Ljud")) {
+                    categories[4].addProduct(p);
+                } else if (contain(name, "Hälsa")) {
+                    categories[8].addProduct(p);
                 } else if (contain(name, "Personvård")) {
-                        categories[0].addProduct(p);
+                    categories[8].addProduct(p);
                 } else if (contain(name, "Foto")) {
-                    categories[4].addProduct(p);
+                    categories[5].addProduct(p);
                 } else if (contain(name, "Bild")) {
-                    categories[4].addProduct(p);
+                    categories[5].addProduct(p);
                 } else {
                     categories[9].addProduct(p);
                 }
+
             }catch (NullPointerException e){            //catch a product with no category name
                 categories[9].addProduct(p);
             }
