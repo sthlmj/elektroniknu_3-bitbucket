@@ -18,9 +18,12 @@ class productsAdapter extends BaseAdapter{
 
     private LayoutInflater mInflater;
     private Product[] products;
+    private Context context;
+    private Product p;
 
     //CONSTRUCTOR
     public productsAdapter(Context context, Product[] products) {
+        this.context = context;
         mInflater = LayoutInflater.from(context);
         this.products = products;
     }
@@ -41,7 +44,7 @@ class productsAdapter extends BaseAdapter{
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolder holder;
-        Product p = products[position];
+        p = products[position];
         if(convertView == null){
             convertView = mInflater.inflate(R.layout.product_row, null);
             holder = new ViewHolder();
@@ -79,25 +82,25 @@ class productsAdapter extends BaseAdapter{
             holder.image.setImageResource(R.drawable.ic_action_about);
         }
 
-       /* priceButton.setOnClickListener(new View.OnClickListener() {
+       holder.price.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String urlForOne = p.getUrl();
+                String urlForOne =  p.getUrl();
                 Intent intent = new Intent(Intent.ACTION_VIEW);
                 intent.setData(Uri.parse(urlForOne));
-                getContext().startActivity(intent);
+                context.startActivity(intent);
             }
         });
 
-        productNameTextView.setOnClickListener(new View.OnClickListener() {
+        holder.productName.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String urlForOne = p.getUrl();
                 Intent intent = new Intent(Intent.ACTION_VIEW);
                 intent.setData(Uri.parse(urlForOne));
-                ProductActivity.this.startActivity(intent);
+                context.startActivity(intent);
             }
-        });*/
+        });
 
 
 
