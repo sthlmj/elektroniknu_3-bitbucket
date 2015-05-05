@@ -84,6 +84,7 @@ public class WelcomeActivity extends ActionBarActivity {
             Intent intent = new Intent(WelcomeActivity.this, MainActivity.class);
             intent.putExtra("Catalog", (java.io.Serializable) catalog);
             startActivity(intent);
+            finish();
         }
     }
 }
