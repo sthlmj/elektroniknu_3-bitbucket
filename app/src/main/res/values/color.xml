@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
-        <color name="blue">#356289</color>
-        <color name="white">#FFFFFF</color>
-        <color name="darkgrey">#4a5449</color>
-        <color name="black">#000000</color>
-
+    <color name="DarkBlue">#1a4072</color>
+    <color name="blue">#356289</color>
+    <color name="white">#FFFFFF</color>
+    <color name="darkgrey">#4a5449</color>
+    <color name="black">#000000</color>
 </resources>
