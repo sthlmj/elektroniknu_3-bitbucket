@@ -3,8 +3,6 @@
 
     <style name="CustomTheme" parent="@style/Theme.AppCompat.Light">
         <item name="actionBarStyle">@style/MyActionBar</item>
-
-
         <item name="android:actionOverflowButtonStyle">@style/CustomeTheme.OverFlow</item>
     </style>
 
@@ -18,17 +16,8 @@
         <item name="android:textSize">20sp</item>
     </style>
 
-    <!-- vafan vill inte detta funka for -->
-    <style name="myTheme.ActionBar.Text" parent="@android:style/TextAppearance">
-        <item name="android:textColor">@color/white</item>
-    </style>
-
-
-
-
     <style name="CustomeTheme.OverFlow" parent="@style/CustomTheme" >
         <item name="android:src">@drawable/white_overflow_button</item>
     </style>
-
 
 </resources>
