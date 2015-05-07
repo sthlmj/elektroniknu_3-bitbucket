@@ -9,7 +9,7 @@
         android:id="@+id/ProductListView"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:divider="#F1DDCB"
+        android:divider="#E1DFDF"
         android:dividerHeight="40sp"
         android:background="@color/white"/>
 </RelativeLayout>

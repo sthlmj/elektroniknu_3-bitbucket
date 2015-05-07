@@ -12,7 +12,6 @@ import android.view.MenuItem;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Toast;
-
 import java.io.IOException;
 
 
@@ -44,6 +43,9 @@ public class StorePdfActivity extends ActionBarActivity {
                 intent = new Intent(this, MainActivity.class); // A new intent to MainActivity
                 startActivity(intent); // Start that intent
             }
+        }else{
+            Toast.makeText(getBaseContext(), "Pdf gick inte att laddas", Toast.LENGTH_SHORT).show();
+            finish();
         }
 
         ActionBar myaction = getSupportActionBar();
