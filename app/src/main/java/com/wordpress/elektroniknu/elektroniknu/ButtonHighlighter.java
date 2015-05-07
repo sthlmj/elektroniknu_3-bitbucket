@@ -3,7 +3,6 @@ package com.wordpress.elektroniknu.elektroniknu;
 import android.graphics.Color;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 
 // highlights buttons onClick

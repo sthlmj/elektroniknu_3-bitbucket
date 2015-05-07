@@ -41,15 +41,15 @@ public class Catalog implements Serializable{
 
     /*
     Categories:
-    0:Skönhet
-    1:Vitvaror
-    2:Ljud
-    3:Dator och surfplattor
-    4:Bild
-    5:Mobil och tillbehör
-    6:Spel och spelkonsol
-    7:Tv och tillbehör
-    8:Hemmet
+    0:Dator och surfplattor
+    1:Mobil och tillbehör
+    2:Tv och tillbehör
+    3:Spel och spelkonsol
+    4:Ljud
+    5:Bild
+    6:Vitvaror
+    7:Hemmet
+    8:Skönhet
     9:Annat
     */
     //ADD LIST OF PRODUCTS TO CATALOG

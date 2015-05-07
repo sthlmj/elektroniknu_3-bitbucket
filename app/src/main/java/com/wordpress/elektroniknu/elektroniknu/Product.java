@@ -128,7 +128,7 @@ public class Product implements Serializable{
                 connection.connect();
                 InputStream input = connection.getInputStream();
                 BitmapFactory.Options options = new BitmapFactory.Options();
-                options.inSampleSize = 4;
+                options.inSampleSize = 5;
                 mIcon11 = BitmapFactory.decodeStream(input, null,options);
                 input.close();
             } catch (Exception e) {
@@ -146,21 +146,6 @@ public class Product implements Serializable{
                     adapter.notifyDataSetChanged();
                 }
             }
-        }
-
-        public int calculateInSampleSize(
-                BitmapFactory.Options options, int reqWidth, int reqHeight) {
-            // Raw height and width of image
-            final int height = options.outHeight;
-            final int width = options.outWidth;
-
-            int stretch_width = Math.round((float)width / (float)reqWidth);
-            int stretch_height = Math.round((float)height / (float)reqHeight);
-
-            if (stretch_width <= stretch_height)
-                return stretch_height;
-            else
-                return stretch_width;
         }
     }
 }

@@ -23,6 +23,8 @@ import android.widget.ImageButton;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
@@ -46,10 +48,13 @@ public class MainActivity extends ActionBarActivity implements GestureDetector.O
         this.gestureDetector = new GestureDetectorCompat(this, this);
 
 
-        if(catalog == null) {
-            Intent intent = this.getIntent();
-            catalog = (Catalog) intent.getSerializableExtra("Catalog");
+        Intent intent = this.getIntent();
+        catalog = (Catalog) intent.getSerializableExtra("Catalog");
+        if(catalog == null){
+            Toast.makeText(getBaseContext(), "Produkter gick inte att visas", Toast.LENGTH_SHORT).show();
+            finish();
         }
+
         // touch feedback 
         ImageButton back =(ImageButton)findViewById(R.id.previosImageButton);
         ImageButton next =(ImageButton)findViewById(R.id.nextImageButton);
@@ -74,7 +79,7 @@ public class MainActivity extends ActionBarActivity implements GestureDetector.O
             }
         // Catch IOException put dummycode in string
         } catch (IOException e) {
-            electronicSupplier = new String[]{"adw", "@da"};
+            electronicSupplier = new String[]{"Det gick inte att h?mta resurser", "Starta om appen"};
         }
 
         // ListAdapter too be able to adapt our array in too
