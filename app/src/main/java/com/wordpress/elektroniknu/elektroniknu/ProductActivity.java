@@ -72,6 +72,7 @@ public class ProductActivity extends ActionBarActivity {
         switch (item.getItemId()) {
             case R.id.action_about:
                 openAbout();
+                return true;
             case android.R.id.home:
                 NavUtils.navigateUpFromSameTask(this);
                // Intent homeIntent = new Intent(this, MainActivity.class);
