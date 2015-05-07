@@ -24,7 +24,7 @@
     </style>
 
     <style name="CustomeTheme.OverFlow" parent="@style/CustomTheme" >
-        <item name="android:src">@drawable/white_overflow_button</item>
+        <item name="android:src">@drawable/whiteoverflow_medium</item>
     </style>
 
 </resources>
